@@ -1,39 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Category;
+use App\Http\Controllers\Controller;
 use App\Models\Option;
-use App\Models\Page;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
-class AdminController extends Controller
+class ConfigurationController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
-    }
-
-    public function showConfigurationForm(){
         $options = Option::all();
         return view('admin.configuration', ['options' => $options]);
     }
 
-    public function showPages(){
-        $search = request()->input('search');
-
-        $pages = Page::query()->paginate(10);
-        if ($search) {
-            $pages = Page::query()->where('title', 'LIKE', "%{$search}%")->paginate();
-        }
-
-        return view('admin.pages', ['pages' => $pages]);
-    }
-
-    public function updateConfiguration(Request $request){
+    public function store(Request $request)
+    {
         $params = $request->validate([
             'options' => 'required|array'
         ]);
@@ -55,10 +37,6 @@ class AdminController extends Controller
             }
         });
 
-        return back();
-    }
-
-    public function showUpdatePageForm(?Page $page = null){
-        return view('admin.add-page');
+        return redirect()->route('admin.configuration.index');
     }
 }

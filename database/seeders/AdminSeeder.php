@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -15,7 +14,7 @@ class AdminSeeder extends Seeder
     {
         User::query()->create([
             'username' => 'admin',
-            'password' => '12345678'
+            'password' => '12345678',
         ]);
     }
 }

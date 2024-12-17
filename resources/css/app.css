@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#editor-container {
+@apply text-gray-800 leading-relaxed;
+}
+
+#editor-container p {
+@apply mb-4 text-base;
+}
+
+#editor-container h1 {
+@apply text-2xl font-bold mb-4;
+}
+
+#editor-container h2 {
+@apply text-xl font-semibold mb-4;
+}
+
+#editor-container ul {
+@apply list-disc pl-6 mb-4;
+}
+
+#editor-container ol {
+@apply list-decimal pl-6 mb-4;
+}
+
+#editor-container li {
+@apply mb-2;
+}
+
+#editor-container a {
+@apply text-blue-500 underline;
+}
+
+#editor-container img {
+@apply rounded-lg shadow-lg my-4;
+}
+
+#editor-container blockquote {
+@apply border-l-4 border-blue-500 pl-4 italic text-gray-600 my-4;
+}

@@ -1,4 +1,4 @@
-<nav class="bg-gray-200 py-3 px-4">
+<nav class="py-3 px-4">
     <div class="container mx-auto">
         <ul class="flex text-sm text-blue-500 space-x-2">
             <li><a href="{{ route('dashboard.index') }}" class="hover:underline">Home</a></li>

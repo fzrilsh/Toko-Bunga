@@ -33,11 +33,11 @@
                                         Diskon {{ $product['discount']['percent'] }}
                                     </div>
                                 @endif
-                                <div class="p-4">
+                                <div class="p-4 flex md:block justify-center items-center flex-col">
                                     <h3 class="text-lg font-semibold text-gray-800">{{ $product->name }}</h3>
                                     <span class="text-xs opacity-55"><i class="fas fa-eye"></i> {{ $product->viewers }} orang melihat</span>
                                     @if ($product['discount']['discounted'])
-                                        <div class="flex items-end justify-center gap-4 mt-2">
+                                        <div class="flex items-end gap-2 mt-2">
                                             <span class="text-[10px] text-gray-500 line-through">{{ 'Rp ' . number_format($product['price'], 0, ',', '.') }}</span>
                                             <span class="font-semibold text-blue-600">{{ 'Rp ' . number_format($product['discount']['price_after_discount'], 0, ',', '.') }}</span>
                                         </div>

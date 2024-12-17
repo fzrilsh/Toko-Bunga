@@ -2,9 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Page;
-use App\Models\Product;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapGenerator;

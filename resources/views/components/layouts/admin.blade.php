@@ -12,6 +12,8 @@
     @else
         @vite('resources/css/app.css')
     @endif
+
+    @stack('styles')
 </head>
 
 <body class="flex h-[150vh] bg-gray-100">
@@ -22,11 +24,13 @@
             <h1 class="text-2xl font-bold">Admin Dashboard</h1>
         </div>
         <nav class="flex-1 px-4 space-y-4">
-            <a href="{{ route('admin.dashboard') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700">Dashboard</a>
-            <a href="{{ route('admin.products') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700">Products</a>
-            <a href="#orders" class="block py-2 px-4 rounded-md hover:bg-blue-700">Orders</a>
-            <a href="#users" class="block py-2 px-4 rounded-md hover:bg-blue-700">Users</a>
-            <a href="{{ route('logout') }}" class="block py-2 px-4 rounded-md hover:bg-red-700 mt-4">Logout</a>
+            <a href="{{ route('admin.dashboard') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="{{ route('admin.categories.index') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700"><i class="fas fa-boxes"></i> Product Categories</a>
+            <a href="{{ route('admin.products.index') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700"><i class="fas fa-box-open"></i> Products</a>
+            <a href="{{ route('admin.pages.index') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700"><i class="fas fa-file-alt"></i> Pages</a>
+            <a href="{{ route('admin.configuration.index') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700"><i class="fas fa-cogs"></i> Configuration</a>
+            <a href="{{ route('admin.profile.index') }}" class="block py-2 px-4 rounded-md hover:bg-blue-700"><i class="fas fa-user"></i> Profile</a>
+            <a href="{{ route('logout') }}" class="block py-2 px-4 rounded-md hover:bg-red-700 mt-4"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </nav>
     </aside>
 

@@ -15,7 +15,10 @@ class LoggedInMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->guard('web')->check()) return redirect()->route('admin.dashboard');
+        if (auth()->guard('web')->check()) {
+            return redirect()->route('admin.dashboard');
+        }
+
         return $next($request);
     }
 }

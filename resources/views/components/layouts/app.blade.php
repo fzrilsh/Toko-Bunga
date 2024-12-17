@@ -2,7 +2,7 @@
 @use(\Illuminate\Support\Facades\Cache)
 
 @php
-    $options = Cache::remember('options', 60 * 10 * 3, function () {
+    $options = Cache::remember('options', 60, function () {
         return Option::all();
     });
 @endphp
@@ -20,7 +20,7 @@
         {!! seo($page ?? null) !!}
     @else
         <title>{{ $pageTitle }} - {{ $options->where('key', 'nama aplikasi')->first()?->value }}</title>
-        <meta name="description" content="Toko bunga di tangerang dengan banyak pilihan.">
+        <meta name="description" content="Akema Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
         <meta name="robots" content="index, follow">
         <meta name="author" content="{{ $pageTitle ?? $options->where('key', 'nama aplikasi')->first()?->value }}">
 
@@ -29,14 +29,14 @@
         <link rel="icon" type="image/jpg" href="/hero-image.jpg">
 
         <meta property="og:title" content="Toko Bunga">
-        <meta property="og:description" content="Toko bunga di tangerang dengan banyak pilihan.">
+        <meta property="og:description" content="Akema Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
         {{-- <meta property="og:image" content="/hero-image.jpg"> --}}
         <meta property="og:url" content="{{ config('app.url') }}">
         <meta property="og:type" content="website">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Toko Bunga">
-        <meta name="twitter:description" content="Toko bunga di tangerang dengan banyak pilihan.">
+        <meta name="twitter:description" content="Akema Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
         {{-- <meta name="twitter:image" content="/hero-image.jpg"> --}}
     @endif
 
@@ -95,13 +95,13 @@
         }
     </style>
 
-    @yield('styling')
-
     @if (env('APP_ENV') === 'production')
         <link rel="stylesheet" href="{{ asset('public/build/assets/app.css') }}">        
     @else
         @vite('resources/css/app.css')
     @endif
+
+    @stack('styling')
 </head>
 
 <body class="bg-blue-50 text-gray-800 font-sans">
@@ -131,24 +131,19 @@
                 </div>
                 <li><a href="{{ route('dashboard.index', ['#home']) }}"
                         class="text-blue-800 hover:underline">Dashboard</a></li>
-                <li><a href="{{ route('dashboard.index', ['#services']) }}"
-                        class="text-blue-800 hover:underline">Layanan</a></li>
                 <li><a href="{{ route('products.index') }}" class="text-blue-800 hover:underline">Products</a></li>
                 <li><a href="https://wa.me/{{ $options->where('key', 'whatsapp')->first()?->value }}"
                         class="text-blue-800 hover:underline">Hubungi Kami</a></li>
             </ul>
             <button class="md:hidden text-blue-800 focus:outline-none" id="navbar-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
+                <i class="fas fa-bars"></i>
             </button>
         </div>
 
         <ul id="mobile-menu" class="md:hidden bg-gray-800 p-4 space-y-4 hidden">
             <li><a href="{{ route('dashboard.index', ['#home']) }}" class="text-white hover:underline">Dashboard</a>
             </li>
-            <li><a href="{{ route('dashboard.index', ['#services']) }}" class="text-white hover:underline">Layanan</a>
+            <li><a href="{{ route('products.index') }}" class="text-white hover:underline">Products</a>
             </li>
             <li><a href="https://wa.me/{{ $options->where('key', 'whatsapp')->first()?->value }}"
                     class="text-white hover:underline">Hubungi Kami</a></li>
@@ -156,7 +151,7 @@
                 'relative',
                 'md:flex',
                 'items-center',
-                'collapse' => request()->routeIs('products.index'),
+                'hidden' => request()->routeIs('products.index'),
             ])>
                 <form class="relative flex items-center" action="{{ route('products.index') }}" method="GET">
                     <input type="text" id="search" name="search"
@@ -188,30 +183,20 @@
                 <div class="flex flex-col items-start">
                     <h3 class="text-xl font-semibold mb-4">Ikuti Kami</h3>
                     <div class="flex space-x-4">
-                        @foreach ($options->where('type', 'medsos') as $item)
+                        @foreach ($options->where('type', 'sosial media') as $item)
                             <a href="{{ $item->key === 'whatsapp' ? "https://wa.me/{$item->value}" : $item->value}}" class="social-icon" data-tooltip="{{ $item->key }}">
                                 <i class="fab fa-{{ $item->key }} text-2xl"></i>
                             </a>
                         @endforeach
-                        {{-- <a href="#" class="social-icon" data-tooltip="Instagram">
-                            <i class="fab fa-instagram text-2xl"></i>
-                        </a>
-                        <a href="#" class="social-icon" data-tooltip="Twitter">
-                            <i class="fab fa-twitter text-2xl"></i>
-                        </a>
-                        <a href="#" class="social-icon" data-tooltip="Whatsapp">
-                            <i class="fab fa-whatsapp text-2xl"></i>
-                        </a> --}}
                     </div>
                 </div>
 
                 <div class="flex flex-col items-start">
                     <h3 class="text-xl font-semibold mb-4">Pusat Informasi</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-blue-400">Tentang Kami</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Kebijakan Privasi</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Syarat & Ketentuan</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Blog</a></li>
+                        <li><a href="{{ route('pages.show', ['page' => 'tentang-kami']) }}" class="hover:text-blue-400">Tentang Kami</a></li>
+                        <li><a href="{{ route('pages.show', ['page' => 'kebijakan-privasi']) }}" class="hover:text-blue-400">Kebijakan Privasi</a></li>
+                        <li><a href="{{ route('pages.show', ['page' => 'syarat-ketentuan']) }}" class="hover:text-blue-400">Syarat & Ketentuan</a></li>
                     </ul>
                 </div>
 
@@ -231,9 +216,8 @@
                 <div class="flex flex-col items-start">
                     <h3 class="text-xl font-semibold mb-4">Pemesanan</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-blue-400">Cara Pemesanan</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Pengiriman</a></li>
-                        <li><a href="#" class="hover:text-blue-400">Lacak Pesanan</a></li>
+                        <li><a href="{{ route('pages.show', ['page' => 'cara-pemesanan']) }}" class="hover:text-blue-400">Cara Pemesanan</a></li>
+                        <li><a href="{{ route('pages.show', ['page' => 'pengiriman']) }}" class="hover:text-blue-400">Pengiriman</a></li>
                     </ul>
                 </div>
             </div>
@@ -245,7 +229,7 @@
 
             <div class="mt-12 border-t border-gray-700 pt-6 text-center">
                 <p class="text-sm text-gray-500">
-                    © 2024 {{ $options->where('key', 'nama aplikasi')->first()?->value }} with <a class="hover:underline" href="https://fazrilsh.my.id">Fazril</a>. All rights reserved.
+                    © {{ date('Y') }} {{ $options->where('key', 'nama aplikasi')->first()?->value }} with <a class="hover:underline" href="https://fazrilsh.my.id">Fazril</a>. All rights reserved.
                 </p>
             </div>
         </div>
@@ -306,6 +290,12 @@
             });
         });
     </script>
+
+    @stack('scripts')
+
+    @if (env('APP_ENV') === 'production')
+        <script src="{{ asset('public/build/assets/app2.js') }}"></script>
+    @endif
 </body>
 
 </html>

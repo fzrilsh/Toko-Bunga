@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -57,7 +56,7 @@ class ProductSeeder extends Seeder
                 'keyword' => 'monroe, bunga monroe, bunga meja',
                 'category_id' => 2,
             ],
-        ])->each(function($v) {
+        ])->each(function ($v) {
             $slug = Str::slug($v['name']);
             Product::query()->create([
                 'name' => $v['name'],
@@ -70,7 +69,7 @@ class ProductSeeder extends Seeder
             ])->Types()->create([
                 'name' => 'Hitam',
                 'image' => "products/{$slug}.webp",
-                'price' => $v['price'] - 10000
+                'price' => $v['price'] - 10000,
             ]);
         });
     }

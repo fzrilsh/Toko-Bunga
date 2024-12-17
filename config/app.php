@@ -123,6 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'maps' => env('APP_MAPS', 'Indonesia')
+    'maps' => env('APP_MAPS', 'Indonesia'),
 
 ];

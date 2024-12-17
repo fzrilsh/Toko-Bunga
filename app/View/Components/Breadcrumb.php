@@ -8,20 +8,21 @@ use Illuminate\View\Component;
 
 class Breadcrumb extends Component
 {
-    public function with(){
+    public function with()
+    {
         $segments = request()->segments();
 
         $url = '';
         foreach ($segments as $segment) {
-            $url .= '/' . $segment;
+            $url .= '/'.$segment;
             $breadcrumbs[] = [
                 'name' => ucfirst(str_replace('-', ' ', $segment)),
-                'url' => $url
+                'url' => $url,
             ];
         }
 
         return [
-            'breadcrumbs' => $breadcrumbs
+            'breadcrumbs' => $breadcrumbs,
         ];
     }
 

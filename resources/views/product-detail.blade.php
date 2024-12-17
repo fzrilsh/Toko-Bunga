@@ -1,6 +1,6 @@
 @extends('components.layouts.app')
 
-@section('styling')
+@push('styling')
     <style>
         .image-display {
             transform: perspective(1000px) rotateY(25deg) scale(0.8) rotateX(10deg);
@@ -17,7 +17,7 @@
             }
         }
     </style>
-@endsection
+@endpush
 
 @section('content')
     <x-breadcrumb />
@@ -27,10 +27,10 @@
 
             <div>
                 <img src="{{ asset('public/storage/' . ($selectedType ? $selectedType->image : $product->image)) }}" alt="{{ $product->name }}"
-                    class="image-display w-full rounded-lg mb-4 object-contain" onclick="window.location.href = '{{ route('products.show', $product) }}'">
+                    class="image-display w-full rounded-lg mb-4 object-contain">
 
                 <div class="grid grid-cols-3 gap-4">
-                    @foreach ($product->types as $type)
+                    @foreach ($product->filteredType as $type)
                         <a href="{{ route('products.show', [$product, 'type=' . $type['id']]) }}" @class(['border', 'rounded-lg', 'p-4', 'text-center', 'hover:shadow-lg', 'cursor-pointer', 'shadow-lg' => $selectedType?->id === $type['id']])>
                             <img src="{{ asset('public/storage/' . $type['image']) }}" alt="{{ $type['name'] }}"
                                 class="w-full h-20 object-contain rounded-md mb-2">
@@ -65,7 +65,7 @@
                 </p>
                 @endif
 
-                <p class="text-gray-700 mb-6">
+                <p class="text-gray-700 mb-6" style="white-space: pre-line">
                     {{ $product->description }}
                 </p>
 
@@ -92,7 +92,7 @@
                                 Diskon {{ $item['discount']['percent'] }}
                             </div>
                         @endif
-                        <h3 class="text-lg font-medium text-gray-800 mb-2">{{ $item->name }}</h3>
+                        <h3 class="text-lg font-medium text-gray-800 mb-2 ">{{ $item->name }}</h3>
                         <span class="text-xs opacity-55"><i class="fas fa-eye"></i> {{ $item->viewers }} orang
                             melihat</span>
                         @if ($item['discount']['discounted'])

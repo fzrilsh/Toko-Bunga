@@ -19,6 +19,7 @@ class Product extends Model implements Sitemapable
     use HasSEO;
 
     public $timestamps = true;
+
     protected $fillable = [
         'name',
         'description',
@@ -29,6 +30,7 @@ class Product extends Model implements Sitemapable
         'keyword',
         'category_id',
     ];
+
     protected $appends = ['category', 'discount', 'types'];
 
     protected $hiddens = ['categroy_id'];
@@ -40,8 +42,8 @@ class Product extends Model implements Sitemapable
 
     protected static function booted()
     {
-        static::created(function(){
-            Queue::push(function(){
+        static::created(function () {
+            Queue::push(function () {
                 Artisan::call('sitemap:create');
             });
         });
@@ -57,49 +59,58 @@ class Product extends Model implements Sitemapable
 
     public function getDynamicSEOData(): SEOData
     {
+        $options = Option::all();
+
         return new SEOData(
-            title: "{$this->name} - " . config('app.name'),
+            title: "{$this->name} - ".$options->where('key', 'nama aplikasi')->first()?->value,
             description: $this->description,
-            author: config('app.name'),
-            image: asset('public/storage/' . $this->image),
+            author: $options->where('key', 'nama aplikasi')->first()?->value,
+            image: asset('public/storage/'.$this->image),
             published_time: new Carbon($this->created_at),
             modified_time: new Carbon($this->updated_at ?? $this->created_at)
         );
     }
 
-    public function Types(): HasMany {
+    public function Types(): HasMany
+    {
         return $this->hasMany(ProductType::class, 'product_id', 'id');
     }
 
-    public function Category(): BelongsTo{
+    public function Category(): BelongsTo
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function Discount(): HasOne {
+    public function Discount(): HasOne
+    {
         return $this->hasOne(Discount::class);
     }
 
-    public function getTypesAttribute(){
-        return $this->Types()->get()->map(fn($type) => [
+    public function getTypesAttribute()
+    {
+        return $this->Types()->get()->map(fn ($type) => [
             ...$type->toArray(),
-            'price' => $type->price - ($type->price * $this->discount['percentraw'] / 100)
+            'price' => $type->price - ($type->price * $this->discount['percentraw'] / 100),
         ]);
     }
 
-    public function getCategoryAttribute(){
+    public function getCategoryAttribute()
+    {
         return $this->Category()->first()?->text;
     }
 
-    public function getDiscountAttribute(){
+    public function getDiscountAttribute()
+    {
         $discount = $this->Discount()->first();
         $percent = $discount?->discount ?? 0;
         $after = $discount?->discount ? $this->price - ($this->price * $discount->discount / 100) : $this->price;
 
         return [
-            'discounted' => $discount ? true : false,
+            'id' => $discount?->id,
+            'discounted' => $discount?->discount ? true : false,
             'percent' => "{$percent}%",
             'percentraw' => $percent,
-            'price_after_discount' => $after
+            'price_after_discount' => $after,
         ];
     }
 }

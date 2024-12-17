@@ -17,25 +17,29 @@ class AuthController extends Controller implements HasMiddleware
         ];
     }
 
-    public function LoginForm(){
+    public function LoginForm()
+    {
         return view('login');
     }
 
-    public function Login(Request $request){
+    public function Login(Request $request)
+    {
         $params = $request->validate([
             'username' => 'required',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8',
         ]);
 
-        if(!auth()->guard('web')->attempt($params)){
+        if (! auth()->guard('web')->attempt($params)) {
             return back()->withErrors(['error' => 'Username atau password salah.']);
         }
 
         return redirect()->route('admin.dashboard');
     }
 
-    public function Logout(){
+    public function Logout()
+    {
         auth()->guard('web')->logout();
+
         return redirect()->route('login');
     }
 }
