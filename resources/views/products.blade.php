@@ -17,8 +17,18 @@
 
     <section class="py-12">
         @if (!count($products))
-            <div class="w-full h-48 flex justify-center items-center">
-                <h1 class="bg-white shadow-2xl p-14 rounded-lg font-bold text-lg">BUNGA UNTUKMU BELUM BISA DITEMUKAN</h1>
+            <div class="text-center px-6">
+                {{-- <h1 class="text-8xl font-extrabold text-blue-500">404</h1> --}}
+                <p class="text-2xl font-semibold text-gray-800 mt-4">Yah, Produk tidak ditemukan!</p>
+                <p class="text-gray-600 mt-2">
+                    Coba sesuaikan pencarian atau coba lagi lain waktu ya!
+                </p>
+                <div class="mt-6">
+                    <a href="{{ route('dashboard.index') }}" 
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded shadow-md transition">
+                        Balik ke Beranda
+                    </a>
+                </div>
             </div>
         @else
             @foreach ($products as $category => $items)

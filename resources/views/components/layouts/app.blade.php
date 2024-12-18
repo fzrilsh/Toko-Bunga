@@ -20,24 +20,25 @@
         {!! seo($page ?? null) !!}
     @else
         <title>{{ $pageTitle }} - {{ $options->where('key', 'nama aplikasi')->first()?->value }}</title>
-        <meta name="description" content="Akema Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
+        <meta name="description" content="Damai Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
         <meta name="robots" content="index, follow">
         <meta name="author" content="{{ $pageTitle ?? $options->where('key', 'nama aplikasi')->first()?->value }}">
 
+        <meta name="keywords" content="toko bunga, toko bunga tangerang, bunga tangerang, akema, akema agung, Damai Agung Florist, aema">
         <link rel="sitemap" title="Sitemap" href="{{ asset('public/sitemap.xml') }}" type="application/xml">
         <link rel="canonical" href="{{ config('app.url') }}">
-        <link rel="icon" type="image/jpg" href="/hero-image.jpg">
+        <link rel="icon" type="image/jpg" href="{{ asset('public/imgs/logo.png') }}">
 
         <meta property="og:title" content="Toko Bunga">
-        <meta property="og:description" content="Akema Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
-        {{-- <meta property="og:image" content="/hero-image.jpg"> --}}
+        <meta property="og:description" content="Damai Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
+        <meta property="og:image" content="{{ asset('public/imgs/logo.png') }}">
         <meta property="og:url" content="{{ config('app.url') }}">
         <meta property="og:type" content="website">
 
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="Toko Bunga">
-        <meta name="twitter:description" content="Akema Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
-        {{-- <meta name="twitter:image" content="/hero-image.jpg"> --}}
+        <meta name="twitter:description" content="Damai Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
+        <meta name="twitter:image" content="{{ asset('public/imgs/logo.png') }}">
     @endif
 
 
@@ -278,16 +279,6 @@
                 navbar.classList.add('navbar-blur');
                 navbar.classList.remove('navbar-scrolled');
             }
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
         });
     </script>
 

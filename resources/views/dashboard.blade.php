@@ -38,7 +38,7 @@
 
     <section id="why" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-blue-600">Mengapa Memilih Akema Agung Florist?</h2>
+            <h2 class="text-3xl font-bold text-blue-600">Mengapa Memilih Damai Agung Florist?</h2>
             <p class="mt-4 text-lg md:text-xl text-gray-700">
                 Berikut adalah beberapa alasan mengapa kami menjadi pilihan utama dalam menyediakan bunga untuk Kamu.
             </p>

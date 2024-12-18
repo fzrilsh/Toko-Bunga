@@ -46,7 +46,7 @@ class Page extends Model implements Sitemapable
             title: "{$this->title} - ".$options->where('key', 'nama aplikasi')->first()?->value,
             description: $this->excerpt,
             author: $options->where('key', 'nama aplikasi')->first()?->value,
-            image: asset('public/storage/'.$this->featured_image),
+            image: asset('public/imgs/logo.png'),
             published_time: new Carbon($this->created_at),
             modified_time: new Carbon($this->updated_at ?? $this->created_at)
         );

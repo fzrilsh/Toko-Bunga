@@ -21,6 +21,8 @@ class ConfigurationController extends Controller
         ]);
 
         foreach($params['options'] as $key => $option){
+            if(!isset($option['type'])) $option['type'] = 'sosial media';
+
             Option::query()->updateOrCreate(['key' => strtolower($key)], [
                 'key' => strtolower($key),
                 ...$option

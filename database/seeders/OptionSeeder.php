@@ -16,7 +16,7 @@ class OptionSeeder extends Seeder
             [
                 'key' => 'nama aplikasi',
                 'type' => 'aplikasi',
-                'value' => 'Akema Agung Florist',
+                'value' => 'Damai Agung Florist',
             ],
             [
                 'key' => 'selogan',
@@ -36,7 +36,7 @@ class OptionSeeder extends Seeder
             [
                 'key' => 'latar belakang',
                 'type' => 'aplikasi',
-                'value' => "Akema Agung Florist adalah toko bunga terkemuka yang hadir untuk memenuhi kebutuhan rangkaian bunga segar dan cantik untuk berbagai keperluan. Dengan dedikasi tinggi terhadap keindahan dan kualitas, kami percaya bahwa setiap bunga memiliki kekuatan untuk menyampaikan pesan yang tulus, baik itu ucapan cinta, kebahagiaan, maupun dukacita.
+                'value' => "Damai Agung Florist adalah toko bunga terkemuka yang hadir untuk memenuhi kebutuhan rangkaian bunga segar dan cantik untuk berbagai keperluan. Dengan dedikasi tinggi terhadap keindahan dan kualitas, kami percaya bahwa setiap bunga memiliki kekuatan untuk menyampaikan pesan yang tulus, baik itu ucapan cinta, kebahagiaan, maupun dukacita.
 Kami hadir bertepatan pada daerah Tangerang kota untuk melayani pesanan diberbagai wilayah",
             ],
             [
