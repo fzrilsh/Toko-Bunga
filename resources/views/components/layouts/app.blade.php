@@ -13,6 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="c9Yql9L-57dY42wJ6cQY7l5GWCF9c7Guz7MlZ63eXck" />
 
     @if (request()->routeIs('products.show'))
         {!! seo($product ?? null) !!}
