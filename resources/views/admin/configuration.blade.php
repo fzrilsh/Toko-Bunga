@@ -38,10 +38,10 @@
                                             </div>
                                             <input type="hidden" name="options[{{ $option->key }}][type]" value="{{ $option->type }}">
                                             <div class="col-span-1 w-1/3">
-                                                <label for="remove" class="block text-gray-700 font-medium">Actions</label>
+                                                <label for="remove" class="block text-gray-700 font-medium">Aksi</label>
                                                 <button type="button" onclick="removeOption(event)"
                                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-red-500 text-white hover:bg-red-600">
-                                                    Remove
+                                                    Hapus
                                                 </button>
                                             </div>
                                         </div>

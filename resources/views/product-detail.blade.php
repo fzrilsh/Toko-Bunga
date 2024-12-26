@@ -31,7 +31,7 @@
 
                 <div class="grid grid-cols-3 gap-4">
                     @foreach ($product->filteredType as $type)
-                        <a href="{{ route('products.show', [$product, 'type=' . $type['id']]) }}" @class(['border', 'rounded-lg', 'p-4', 'text-center', 'hover:shadow-lg', 'cursor-pointer', 'shadow-lg' => $selectedType?->id === $type['id']])>
+                        <a href="{{ route('products.show', [$product, (isset($type['discount']) ? '' : 'type=' . $type['id'])]) }}" @class(['border', 'rounded-lg', 'p-4', 'text-center', 'hover:shadow-lg', 'cursor-pointer', 'shadow-lg' => $selectedType?->id === $type['id']])>
                             <img src="{{ asset('public/storage/' . $type['image']) }}" alt="{{ $type['name'] }}"
                                 class="w-full h-20 object-contain rounded-md mb-2">
                             <p class="text-sm font-medium">{{ $type['name'] }}</p>
@@ -71,7 +71,7 @@
 
                 @use(\App\Models\Option)
                 <a role="button"
-                    href="https://wa.me/{{ Option::query()->where('key', 'whatsapp')->first()?->value }}?text=Halo%20{{ config('app.name') }}%2C%0A%0ASaya%20tertarik%20dengan%20produk%20kamu%20ini%3A%20%2A{{ $product->name }}%2A%0ADengan%20Tipe%3A%20%2A{{ $selectedType ? $selectedType->name : 'default' }}%2A%0A%0AApakah%20produk%20tersebut%20masih%20ada%3F"
+                    href="https://wa.me/{{ Option::query()->where('key', 'whatsapp')->first()?->value }}?text=Halo%20{{ Option::query()->where('key', 'nama aplikasi')->first()?->value }}%2C%0A%0ASaya%20tertarik%20dengan%20produk%20kamu%20ini%3A%20%2A{{ $product->name }}%2A%0ADengan%20Tipe%3A%20%2A{{ $selectedType ? $selectedType->name : 'default' }}%2A%0A%0AApakah%20produk%20tersebut%20masih%20ada%3F"
                     class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg">
                     Pesan Sekarang
                 </a>
