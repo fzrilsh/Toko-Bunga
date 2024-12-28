@@ -33,7 +33,7 @@ class DashboardController extends Controller
         }
 
         return [
-            'pageTitle' => 'Dashboard',
+            'pageTitle' => 'Toko Bunga Tangerang, Harga Mulai Dari Rp. 19.000 - Toko Bunga Terdekat',
             'options' => $this->options,
             'diminati' => $diminati,
             'byCategory' => $byCategory,

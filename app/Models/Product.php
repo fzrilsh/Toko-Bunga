@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Queue;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
@@ -43,10 +44,13 @@ class Product extends Model implements Sitemapable
     protected static function booted()
     {
         static::created(function () {
-            Queue::push(function () {
-                Artisan::call('sitemap:create');
-            });
+            Artisan::call('sitemap:create');
         });
+
+        static::saved(function (){
+            Artisan::call('sitemap:create');
+        });
+
     }
 
     public function toSitemapTag(): Url|string|array

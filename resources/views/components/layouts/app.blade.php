@@ -5,6 +5,8 @@
     $options = Cache::remember('options', 60, function () {
         return Option::all();
     });
+
+    $nama_aplikasi = $options->where('key', 'nama aplikasi')->first()?->value;
 @endphp
 
 <!DOCTYPE html>
@@ -20,29 +22,29 @@
     @elseif (request()->routeIs('pages.show'))
         {!! seo($page ?? null) !!}
     @else
-        <title>{{ $pageTitle }} - {{ $options->where('key', 'nama aplikasi')->first()?->value }}</title>
-        <meta name="description" content="Damai Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
+        <title>{{ $pageTitle }} | {{ $nama_aplikasi }}</title>
+        <meta name="description" content="Damai Agung Florist adalah toko bunga di tangerang yang hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
         <meta name="robots" content="index, follow">
-        <meta name="author" content="{{ $pageTitle ?? $options->where('key', 'nama aplikasi')->first()?->value }}">
+        <meta name="author" content="{{ $pageTitle ?? $nama_aplikasi }}">
 
-        <meta name="keywords" content="toko bunga, toko bunga tangerang, bunga tangerang, akema, akema agung, Damai Agung Florist, aema">
+        <meta name="keywords" content="toko bunga, toko bunga tangerang, bunga tangerang, damai, damai agung, Damai Agung Florist">
         <link rel="sitemap" title="Sitemap" href="{{ asset('public/sitemap.xml') }}" type="application/xml">
         <link rel="canonical" href="{{ config('app.url') }}">
-        <link rel="icon" type="image/jpg" href="{{ asset('public/imgs/logo.png') }}">
 
-        <meta property="og:title" content="{{ $options->where('key', 'nama aplikasi')->first()?->value }}">
+        <meta property="og:title" content="{{ $pageTitle }} | {{ $nama_aplikasi }}">
         <meta property="og:description" content="Damai Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
-        <meta property="og:image" content="{{ asset('public/imgs/logo.png') }}">
+        <meta property="og:image" content="{{ asset('public/logo.png') }}">
         <meta property="og:url" content="{{ config('app.url') }}">
         <meta property="og:type" content="website">
 
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ $options->where('key', 'nama aplikasi')->first()?->value }}">
-        <meta name="twitter:description" content="Damai Agung Florist hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
-        <meta name="twitter:image" content="{{ asset('public/imgs/logo.png') }}">
+        <meta name="twitter:title" content="{{ $pageTitle }} | {{ $nama_aplikasi }}">
+        <meta name="twitter:description" content="Damai Agung Florist adalah toko bunga di tangerang yang hadir untuk membuat setiap momen Anda lebih indah dan bermakna. Percayakan kebutuhan bunga Anda kepada kami, karena kami mengerti pentingnya menyampaikan perasaan melalui keindahan bunga.">
+        <meta name="twitter:image" content="{{ asset('public/logo.png') }}">
     @endif
 
-
+    <link rel="apple-touch-icon" href="{{ asset('public/logo.png') }}">
+    <link rel="icon" type="image/jpg" href="{{ asset('public/logo.png') }}">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
@@ -67,10 +69,6 @@
             display: inline-block;
             opacity: 1;
             transition: opacity .3s ease-in-out;
-        }
-
-        .social-icon:hover {
-            /* opacity: .6; */
         }
 
         .social-icon:hover::after {
@@ -111,7 +109,7 @@
     <nav id="navbar" class="sticky top-0 w-full z-50 transition-all duration-300 navbar-blur">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <a href="{{ route('dashboard.index') }}"
-                class="text-2xl font-bold text-blue-500">{{ $options->where('key', 'nama aplikasi')->first()?->value }}</a>
+                class="text-2xl font-bold text-blue-500">{{ $nama_aplikasi }}</a>
 
             <ul class="hidden md:flex space-x-6 justify-center items-center">
                 <div @class([
@@ -176,7 +174,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
 
                 <div class="flex flex-col items-start">
-                    <h3 class="text-2xl font-bold mb-4">Toko Bunga Kami</h3>
+                    <h3 class="text-2xl font-bold mb-4">{{ $nama_aplikasi }}</h3>
                     <p class="text-lg mb-4">
                         {{ $options->where('key', 'selogan')->first()?->value }}
                     </p>
@@ -231,11 +229,50 @@
 
             <div class="mt-12 border-t border-gray-700 pt-6 text-center">
                 <p class="text-sm text-gray-500">
-                    © {{ date('Y') }} {{ $options->where('key', 'nama aplikasi')->first()?->value }} with <a class="hover:underline" href="https://fazrilsh.my.id">Fazril</a>. All rights reserved.
+                    © {{ date('Y') }} {{ $nama_aplikasi }} with <a class="hover:underline" href="https://fazrilsh.my.id">Fazril</a>. All rights reserved.
                 </p>
             </div>
         </div>
     </footer>
+
+    <div class="container my-10 mx-auto px-4">
+        <h1><strong>Toko Bunga, Florist Online, Toko Bunga Terdekat & Murah, Harga Mulai dari Rp 19.000 | {{ strtoupper($nama_aplikasi) }}</strong></h1>
+        <p class="mt-2">Damai Agung Florist adalah toko bunga di Tangerang yang menyediakan layanan rangkaian bunga segar untuk berbagai kebutuhan Anda. Kami berkomitmen untuk menghadirkan keindahan melalui setiap rangkaian bunga, baik itu untuk momen bahagia seperti ulang tahun, pernikahan, atau perayaan lainnya, hingga momen duka cita. Dengan layanan profesional dan pengiriman yang tepat waktu, Damai Agung Florist siap menjadi pilihan utama Anda untuk segala kebutuhan bunga.</p>
+        <div class="my-4">
+            <h2><strong>Keunggulan kami:</strong></h2>
+            <ol class="list-decimal ml-6">
+                <li>
+                    <h3>Bunga Segar Pilihan</h3>
+                    <p>Kami bekerja sama dengan petani bunga terbaik untuk memastikan setiap bunga yang Anda terima segar, harum, dan berkualitas tinggi.</p>
+                </li>
+                <li>
+                    <h3>Desain Eksklusif dan Elegan</h3>
+                    <p>Tim florist profesional kami merancang setiap rangkaian dengan sentuhan seni yang memikat dan disesuaikan dengan kebutuhan serta keinginan Anda.</p>
+                </li>
+                <li>
+                    <h3>Layanan Personal</h3>
+                    <p>Kami siap membantu Anda memilih jenis bunga, warna, dan desain yang sesuai dengan momen spesial Anda.</p>
+                </li>
+                <li>
+                    <h3>Pengiriman Tepat Waktu</h3>
+                    <p>Kami memahami pentingnya ketepatan waktu. Oleh karena itu, kami menyediakan layanan pengiriman cepat dan aman ke Tangerang atau seluruh Indonesia.</p>
+                </li>
+            </ol>
+        </div>
+        <div class="my-4">
+            <h2><strong>Produk utama kami:</strong></h2>
+            <ol class="list-disc ml-6">
+                <li>Buket bunga, untuk hadiah ulang tahun, perayaan, atau sekadar kejutan manis.</li>
+                <li>Bunga Meja, cocok untuk dekorasi rumah, kantor, atau acara formal.</li>
+                <li>Bunga Standing, cocok untuk ucapan grand opening suatu toko.</li>
+                <li>Karangan Bunga, cocok untuk menyampaikan ucapan\pesan dalam berbagai suasana melalui karangan bunga.</li>
+            </ol>
+        </div>
+        <div class="my-4">
+            <h2><strong>Layanan Pengiriman Kami:</strong></h2>
+            <p>Kami melayani pengiriman bunga ke berbagai wilayah, termasuk tangerang atau seluruh area Jabodetabek. Dengan layanan same-day delivery, bunga Anda akan tiba di hari yang sama, sesuai dengan permintaan Anda.</p>
+        </div>
+    </div>
 
     <div class="social-icon fixed bottom-6 right-6 flex items-center justify-center space-x-2 rounded-full shadow-lg z-[999]"
         data-tooltip="Hubungi kami melalui whatsapp">
@@ -244,6 +281,71 @@
             <i class="fab fa-whatsapp text-white text-2xl"></i>
         </a>
     </div>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Florist",
+          "name": "Damai Agung Florist",
+          "description": "Toko bunga di Tangerang yang menyediakan layanan rangkaian bunga segar seperti buket bunga, karangan bunga, bunga meja, dan standing flower untuk berbagai acara.",
+          "url": "https://www.damaiagungflorist.com",
+          "telephone": ["+62 838-1373-5071", "+62 823-1049-8541"],
+          "openingHours": "24/7",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jl. Eksekusi 2 Blok E2 No.8, RT.001/RW.008, Sukasari, Kec. Tangerang, Kota Tangerang, Banten 15118",
+            "addressLocality": "Tangerang",
+            "addressRegion": "Banten",
+            "addressCountry": "ID",
+            "postalCode": "15118"
+          },
+          "sameAs": [
+            "https://facebook.com/damaiagungflorist",
+            "https://instagram.com/damaiagungflorist"
+          ],
+          "priceRange": "IDR 19.999",
+          "image": "https://www.damaiagungflorist.com/public/logo.png",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -6.1820944,
+            "longitude": 106.6428366
+          },
+          "serviceArea": {
+            "@type": "Place",
+            "name": "Jabodetabek"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Layanan Bunga",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Buket Bunga",
+                "description": "Rangkaian bunga segar untuk hadiah ulang tahun atau momen spesial lainnya.",
+                "price": "IDR 19.999 - IDR 500.000"
+              },
+              {
+                "@type": "Offer",
+                "name": "Karangan Bunga",
+                "description": "Karangan bunga untuk ucapan selamat, duka cita, atau penghormatan.",
+                "price": "IDR 200.000 - IDR 3.000.000"
+              },
+              {
+                "@type": "Offer",
+                "name": "Bunga Meja",
+                "description": "Bunga untuk dekorasi rumah, kantor, atau acara formal.",
+                "price": "IDR 50.000 - IDR 1.000.000"
+              },
+              {
+                "@type": "Offer",
+                "name": "Standing Flower",
+                "description": "Pilihan bunga untuk acara grand opening atau acara resmi lainnya.",
+                "price": "IDR 500.000 - IDR 3.000.000"
+              }
+            ]
+          }
+        }
+    </script>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -254,7 +356,7 @@
         }).addTo(map);
 
         L.marker([{{ $options->where('key', 'map koordinat')->first()?->value }}]).addTo(map)
-            .bindPopup("{{ $options->where('key', 'nama aplikasi')->first()?->value }} | Klik peta untuk membuka di google maps")
+            .bindPopup("Klik peta untuk membuka di google maps")
             .openPopup();
 
         map.on('click', function(e) {
