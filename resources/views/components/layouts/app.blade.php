@@ -224,7 +224,7 @@
 
             <div class="mt-12">
                 <h3 class="text-xl font-semibold mb-4 text-center">Lokasi Kami</h3>
-                <div id="map" class="w-full h-64 md:h-80 lg:h-96"></div>
+                <div id="map" class="w-full h-64 md:h-80 lg:h-96 z-[1]"></div>
             </div>
 
             <div class="mt-12 border-t border-gray-700 pt-6 text-center">
