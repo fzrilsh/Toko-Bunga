@@ -69,7 +69,7 @@ class Product extends Model implements Sitemapable
             title: "{$this->name} - ".$options->where('key', 'nama aplikasi')->first()?->value,
             description: $this->description,
             author: $options->where('key', 'nama aplikasi')->first()?->value,
-            image: asset('public/storage/'.$this->image),
+            image: asset('storage/'.$this->image),
             published_time: new Carbon($this->created_at),
             modified_time: new Carbon($this->updated_at ?? $this->created_at)
         );

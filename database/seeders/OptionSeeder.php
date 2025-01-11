@@ -47,7 +47,7 @@ Kami hadir bertepatan pada daerah Tangerang kota untuk melayani pesanan diberbag
             [
                 'key' => 'whatsapp',
                 'type' => 'sosial media',
-                'value' => '6283813735071',
+                'value' => '6282310498541',
             ],
             [
                 'key' => 'instagram',

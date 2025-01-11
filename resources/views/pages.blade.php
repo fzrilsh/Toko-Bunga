@@ -9,7 +9,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($pages as $page)
                     <div class="bg-white shadow rounded-lg overflow-hidden">
-                        {{-- <img src="{{ asset('public/storage/' . $page->featured_image) }}" alt="{{ $page->title }}"
+                        {{-- <img src="{{ asset('storage/' . $page->featured_image) }}" alt="{{ $page->title }}"
                             class="w-full h-48 object-cover"> --}}
                         <div class="p-4">
                             <h3 class="text-lg font-semibold text-gray-800 hover:text-blue-500">

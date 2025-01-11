@@ -70,7 +70,7 @@
                 @enderror</label>
                 @if ($product?->image)
                     <div class="flex items-center space-x-4 mb-2">
-                        <img src="{{ asset('public/storage/' . $product->image) }}"
+                        <img src="{{ asset('storage/' . $product->image) }}"
                             class="object-contain w-16 h-16 rounded">
                         <span class="text-gray-500">Gambar sudah ada</span>
                     </div>
@@ -120,7 +120,7 @@
                                 value="{{ old('types.' . $key . '.price', $item['price']) }}" placeholder="Price"
                                 class="w-1/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                             @if ($item['image'])
-                                <img src="{{ asset('public/storage/' . $item['image']) }}"
+                                <img src="{{ asset('storage/' . $item['image']) }}"
                                     class="object-contain w-16 h-16 rounded">
                             @endif
                             <input type="file" name="types[{{ $key }}][image]" accept=".png,.jpeg,.jpg,.webp"

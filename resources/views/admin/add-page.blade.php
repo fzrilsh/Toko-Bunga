@@ -55,7 +55,7 @@
                     @enderror</label>
                     @if ($page?->featured_image)
                         <div class="flex items-center space-x-4 mb-2">
-                            <img src="{{ asset('public/storage/' . $page->featured_image) }}"
+                            <img src="{{ asset('storage/' . $page->featured_image) }}"
                                 class="object-contain w-16 h-16 rounded">
                             <span class="text-gray-500">Gambar sudah ada</span>
                         </div>

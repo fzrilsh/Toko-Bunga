@@ -11,7 +11,7 @@
             <p class="text-gray-600 text-sm mb-6">Ditulis oleh <span class="font-semibold text-blue-500">Admin</span>
                 pada <span class="italic">{{ \Carbon\Carbon::parse($page->created_at)->format('d F Y') }}</span></p>
             @if ($page?->featured_image)
-                <img src="{{ asset('public/storage/' . $page->featured_image) }}" alt="{{ $page->slug }}"
+                <img src="{{ asset('storage/' . $page->featured_image) }}" alt="{{ $page->slug }}"
                     class="w-full mb-6 rounded-lg shadow">
             @endif
             <div class="prose prose-blue bg-white pt-1 px-3 rounded shadow-lg py-2" id="editor-container">

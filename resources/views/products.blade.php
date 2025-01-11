@@ -37,7 +37,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         @foreach ($items as $product)
                             <div class="relative bg-white border border-gray-200 rounded-md shadow-sm hover:shadow-lg hover:scale-105 transition">
-                                <img src="{{ asset('public/storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-40 object-contain rounded-t-md">
+                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-40 object-contain rounded-t-md">
                                 @if ($product['discount']['discounted'])
                                     <div class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold py-1 px-3 rounded-full">
                                         Diskon {{ $product['discount']['percent'] }}

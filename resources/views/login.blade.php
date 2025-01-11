@@ -8,7 +8,7 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     @if (env('APP_ENV') === 'production')
-        <link rel="stylesheet" href="{{ asset('public/build/assets/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
     @else
         @vite('resources/css/app.css')
     @endif

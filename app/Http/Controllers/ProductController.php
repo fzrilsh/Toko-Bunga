@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Option;
 use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,10 +14,16 @@ class ProductController extends Controller
 {
     public Collection $defaultProducts;
 
+    public Collection $options;
+
     public function __construct()
     {
         $this->defaultProducts = Cache::remember('products', 60, function () {
             return Product::all();
+        });
+
+        $this->options = Cache::remember('options', 60, function () {
+            return Option::all();
         });
     }
 
@@ -33,7 +40,13 @@ class ProductController extends Controller
                 ->groupBy('category');
         }
 
-        return view('products')->with(['pageTitle' => 'Products', 'search' => $search, 'products' => $products]);
+        return view('products')->with([
+            'pageTitle' => 'Products',
+            'search' => $search,
+            'products' => $products,
+            'options' => $this->options,
+            'nama_aplikasi' => $this->options->where('key', 'nama aplikasi')->first()?->value
+        ]);
     }
 
     public function show(Product $product)
@@ -56,6 +69,13 @@ class ProductController extends Controller
             $product->filteredType->push($product);
         }
 
-        return view('product-detail')->with(['pageTitle' => "{$product->name}", 'product' => $product, 'products' => $products, 'selectedType' => $type]);
+        return view('product-detail')->with([
+            'pageTitle' => "{$product->name}",
+            'product' => $product,
+            'products' => $products,
+            'selectedType' => $type,
+            'options' => $this->options,
+            'nama_aplikasi' => $this->options->where('key', 'nama aplikasi')->first()?->value
+        ]);
     }
 }

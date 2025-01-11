@@ -26,13 +26,13 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
             <div>
-                <img src="{{ asset('public/storage/' . ($selectedType ? $selectedType->image : $product->image)) }}" alt="{{ $product->name }}"
+                <img src="{{ asset('storage/' . ($selectedType ? $selectedType->image : $product->image)) }}" alt="{{ $product->name }}"
                     class="image-display w-full rounded-lg mb-4 object-contain">
 
                 <div class="grid grid-cols-3 gap-4">
                     @foreach ($product->filteredType as $type)
                         <a href="{{ route('products.show', [$product, (isset($type['discount']) ? '' : 'type=' . $type['id'])]) }}" @class(['border', 'rounded-lg', 'p-4', 'text-center', 'hover:shadow-lg', 'cursor-pointer', 'shadow-lg' => $selectedType?->id === $type['id']])>
-                            <img src="{{ asset('public/storage/' . $type['image']) }}" alt="{{ $type['name'] }}"
+                            <img src="{{ asset('storage/' . $type['image']) }}" alt="{{ $type['name'] }}"
                                 class="w-full h-20 object-contain rounded-md mb-2">
                             <p class="text-sm font-medium">{{ $type['name'] }}</p>
                             <p class="text-blue-600 font-semibold">{{ 'Rp ' . number_format($type['price'], 0, ',', '.') }}</p>
@@ -84,7 +84,7 @@
                 @foreach ($products as $item)
                     <div class="relative bg-white rounded-lg shadow-md p-4 hover:shadow-lg"
                         onclick="window.location.href = '{{ route('products.show', $item) }}'">
-                        <img src="{{ asset('public/storage/' . $item->image) }}" alt="Product 1"
+                        <img src="{{ asset('storage/' . $item->image) }}" alt="Product 1"
                             class="w-full h-40 object-contain rounded-md mb-4">
                         @if ($item['discount']['discounted'])
                             <div

@@ -3,18 +3,17 @@
 @section('content')
     <section id="home" class="relative h-[56vh]">
         <div class="absolute inset-0">
-            <img src="{{ asset('public/imgs/hero.jpg') }}"
+            <img src="{{ asset('imgs/hero.jpg') }}"
                 alt="Hero Image" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
         <div class="relative z-10 flex items-center justify-center h-full text-center text-white py-20">
             <div class="container mx-auto px-4">
-                <h1 class="text-4xl md:text-6xl font-bold">Selamat Datang di {{ $options->where('key', 'nama aplikasi')->first()?->value }}</h1>
+                <h1 class="text-4xl md:text-6xl font-bold">Toko Bunga di Tangerang</h1>
                 <p class="mt-4 text-lg md:text-xl">
                     {{ $options->where('key', 'selogan')->first()?->value }}
                 </p>
-                <button
-                    class="mt-6 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200">
+                <button class="mt-6 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200">
                     <a href="#products">Jelajahi Sekarang</a>
                 </button>
             </div>
@@ -30,8 +29,7 @@
                 </p>
             </div>
             <div class="md:w-1/2 mt-8 md:mt-0">
-                <img src="{{ asset('public/imgs/hero-small.jpg') }}" alt="Gambar Bunga"
-                    class="w-full h-auto object-cover rounded-lg shadow-lg brightness-90">
+                <img src="{{ asset('imgs/hero-small.jpg') }}" alt="Toko Bunga di Tangerang" class="w-full h-auto object-cover rounded-lg shadow-lg brightness-90">
             </div>
         </div>
     </section>
@@ -139,7 +137,7 @@
                             @foreach ($diminati as $item)
                                 <div onclick="window.location.href = '{{ route('products.show', $item) }}'"
                                     class="product-card flex-none w-64 relative transform transition duration-300 hover:shadow-xl">
-                                    <img src="{{ asset('public/storage/' . $item->image) }}" alt="{{ $item->name }}"
+                                    <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}"
                                         class="w-full h-48 object-contain rounded-lg">
                                     @if ($item['discount']['discounted'])
                                         <div
@@ -172,7 +170,7 @@
                                 @foreach ($items as $item)
                                     <div onclick="window.location.href = '{{ route('products.show', $item) }}'"
                                         class="product-card flex-none w-64 relative transform transition duration-300 hover:shadow-xl">
-                                        <img src="{{ asset('public/storage/' . $item->image) }}" alt="{{ $item->name }}"
+                                        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}"
                                             class="w-full h-48 object-contain rounded-lg">
                                         @if ($item['discount']['discounted'])
                                             <div
