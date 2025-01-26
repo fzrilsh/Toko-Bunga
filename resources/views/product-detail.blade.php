@@ -44,7 +44,7 @@
                     @endif
 
                     <p class="text-gray-700 mb-6 max-sm:w-full min-w-32 max-w-96 break-words">
-                        {{ $product->description }}
+                        {!! nl2br($product->description) !!}
                     </p>
                 </div>
             </div>
@@ -73,6 +73,7 @@
                     id="quantity-input"
                     name="quantity"
                     data-input-counter
+                    value="1"
                     aria-describedby="helper-text-explanation"
                     class="bg-bridal-heath-50 border-x-0 border-bridal-heath-300 h-11 text-center text-bridal-heath-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5"
                     min="1"
@@ -106,9 +107,9 @@
             <p class="text-left mb-2 text-bridal-heath-700 font-dancing text-3xl">Produk Lainnya</p>
         </div>
 
-        <div class="scroll overflow-x-auto overflow-y-hidden flex gap-5 mx-auto mt-5 items-start">
+        <div class="snap-x snap-mandatory scroll overflow-x-auto overflow-y-hidden flex gap-5 mx-auto mt-5 items-start">
             @foreach ($products as $item)
-                <div class="mr-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 flex-none py-4">
+                <div class="snap-center p-3 bg-white rounded-lg flex flex-col items-center justify-center max-sm:w-full w-72 flex-none py-4">
                     <img src="{{ asset('storage/' . $item->image) }}" class="object-contain object-center rounded-lg w-full h-52 mb-4" alt="Product" />
                     <div class="flex flex-col items-center">
                         <p class="max-w-56 mx-auto text-center mb-2 text-xl font-bold break-words">{{ $item->name }}</p>

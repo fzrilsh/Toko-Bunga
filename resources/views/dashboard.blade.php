@@ -24,9 +24,9 @@
                 <h1 class="text-center text-3xl font-bold text-gray-700 font-titillium">Rekomendasi Bunga Khusus Untukmu</h1>
             </div>
 
-            <div class="scroll overflow-x-auto overflow-y-hidden gap-5 flex justify-around mx-auto mt-5 items-end max-w-4xl max-sm:w-full max-sm:max-w-none">
+            <div class="snap-x snap-mandatory scroll overflow-x-auto overflow-y-hidden gap-5 flex justify-around mx-auto mt-5 items-end max-w-4xl max-sm:w-full max-sm:max-w-none">
                 @foreach ($diminati as $item)
-                    <div class="p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 max-sm:w-full flex-none">
+                    <div class="snap-center p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 max-sm:w-full flex-none">
                         <img src="{{ 'storage/' . $item->image }}" class="object-contain object-center rounded-lg w-full h-52 mb-4" alt="Product" />
                         <div class="flex flex-col items-center">
                             <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $item->name }}</p>
@@ -149,9 +149,9 @@
             <h1 class="text-left text-3xl font-bold text-gray-700 font-titillium">Lihatlah yang kami miliki <a href="{{ route('products.index') }}" class="text-sm text-bridal-heath-700 hover:underline cursor-pointer">(lihat semua)</a></h1>
         </div>
 
-        <div class="scroll overflow-x-auto overflow-y-hidden flex gap-5 mx-auto mt-5 items-center">
+        <div class="snap-x snap-mandatory scroll overflow-x-auto overflow-y-hidden flex gap-5 mx-auto mt-5 items-center">
             @foreach ($products as $product)
-                <div class="mx-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 flex-none">
+                <div class="snap-center mx-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center max-sm:w-full w-72 flex-none">
                     <img src="{{ asset('storage/' . $product->image) }}" class="object-contain object-center rounded-lg w-full h-52 mb-4" alt="Product" />
                     <div class="flex flex-col items-center">
                         <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $product->name }}</p>
