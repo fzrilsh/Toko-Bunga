@@ -50,7 +50,7 @@
             </div>
 
             @if (count($product->filteredType) > 0)
-                <div class="relative">
+                <div class="relative max-sm:mx-0 mx-10">
                     <button onclick="scrollType(-100)" class="absolute left-0 z-10 bg-white hover:bg-gray-300 p-2 rounded-full shadow-md -translate-y-1/2 top-1/2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <g>

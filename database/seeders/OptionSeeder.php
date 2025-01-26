@@ -36,8 +36,8 @@ class OptionSeeder extends Seeder
             [
                 'key' => 'latar belakang',
                 'type' => 'aplikasi',
-                'value' => "Damai Agung Florist adalah toko bunga terkemuka yang hadir untuk memenuhi kebutuhan rangkaian bunga segar dan cantik untuk berbagai keperluan. Dengan dedikasi tinggi terhadap keindahan dan kualitas, kami percaya bahwa setiap bunga memiliki kekuatan untuk menyampaikan pesan yang tulus, baik itu ucapan cinta, kebahagiaan, maupun dukacita.
-Kami hadir bertepatan pada daerah Tangerang kota untuk melayani pesanan diberbagai wilayah",
+                'value' => 'Damai Agung Florist adalah toko bunga terkemuka yang hadir untuk memenuhi kebutuhan rangkaian bunga segar dan cantik untuk berbagai keperluan. Dengan dedikasi tinggi terhadap keindahan dan kualitas, kami percaya bahwa setiap bunga memiliki kekuatan untuk menyampaikan pesan yang tulus, baik itu ucapan cinta, kebahagiaan, maupun dukacita.
+Kami hadir bertepatan pada daerah Tangerang kota untuk melayani pesanan diberbagai wilayah',
             ],
             [
                 'key' => 'metode pembayaran',
@@ -58,7 +58,7 @@ Kami hadir bertepatan pada daerah Tangerang kota untuk melayani pesanan diberbag
                 'key' => 'facebook',
                 'type' => 'sosial media',
                 'value' => 'https://www.facebook.com/#',
-            ]
+            ],
         ])->each(fn ($v) => Option::query()->create($v));
     }
 }

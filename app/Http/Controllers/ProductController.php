@@ -36,7 +36,7 @@ class ProductController extends Controller
         if ($search) {
             $products = $this->defaultProducts
                 ->toQuery()
-                ->where(function(Builder $query) use($search){
+                ->where(function (Builder $query) use ($search) {
                     $query->orWhere('keyword', 'LIKE', "%{$search}%")
                         ->orWhere('name', 'LIKE', "%{$search}%")
                         ->orWhere('description', 'LIKE', "%{$search}%");
@@ -50,7 +50,7 @@ class ProductController extends Controller
             'search' => $search,
             'products' => $products,
             'options' => $this->options,
-            'nama_aplikasi' => $this->options->where('key', 'nama aplikasi')->first()?->value
+            'nama_aplikasi' => $this->options->where('key', 'nama aplikasi')->first()?->value,
         ]);
     }
 
@@ -70,7 +70,7 @@ class ProductController extends Controller
 
         $product->filteredType = $product->types;
         if ($type) {
-            $product->filteredType = collect($product->types)->filter(fn($v) => $v['id'] !== $type->id);
+            $product->filteredType = collect($product->types)->filter(fn ($v) => $v['id'] !== $type->id);
             $product->filteredType->push($product);
         }
 
@@ -80,7 +80,7 @@ class ProductController extends Controller
             'products' => $products,
             'selectedType' => $type,
             'options' => $this->options,
-            'nama_aplikasi' => $this->options->where('key', 'nama aplikasi')->first()?->value
+            'nama_aplikasi' => $this->options->where('key', 'nama aplikasi')->first()?->value,
         ]);
     }
 }

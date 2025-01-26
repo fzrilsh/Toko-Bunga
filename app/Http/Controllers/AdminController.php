@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Option;
 use App\Models\Page;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -17,12 +13,15 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function showConfigurationForm(){
+    public function showConfigurationForm()
+    {
         $options = Option::all();
+
         return view('admin.configuration', ['options' => $options]);
     }
 
-    public function showPages(){
+    public function showPages()
+    {
         $search = request()->input('search');
 
         $pages = Page::query()->paginate(10);
@@ -33,15 +32,16 @@ class AdminController extends Controller
         return view('admin.pages', ['pages' => $pages]);
     }
 
-    public function updateConfiguration(Request $request){
+    public function updateConfiguration(Request $request)
+    {
         $params = $request->validate([
-            'options' => 'required|array'
+            'options' => 'required|array',
         ]);
 
-        foreach($params['options'] as $key => $option){
+        foreach ($params['options'] as $key => $option) {
             Option::query()->updateOrCreate(['key' => strtolower($key)], [
                 'key' => strtolower($key),
-                ...$option
+                ...$option,
             ]);
 
             unset($params['options'][$key]);
@@ -58,7 +58,8 @@ class AdminController extends Controller
         return back();
     }
 
-    public function showUpdatePageForm(?Page $page = null){
+    public function showUpdatePageForm(?Page $page = null)
+    {
         return view('admin.add-page');
     }
 }

@@ -20,7 +20,8 @@ class Option extends Model
         return 'key';
     }
 
-    public function scopeKey(Builder $query, string $key){
+    public function scopeKey(Builder $query, string $key)
+    {
         return $query->where('key', $key)->first();
     }
 }

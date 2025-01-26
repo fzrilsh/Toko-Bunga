@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-    @if (request()->routeIs('dashboard.index'))
+    @if (request()->routeIs('dashboard.index') || request()->routeIs('pages.index') || !($product ?? $page ?? null))
         <title>Toko Bunga di Tangerang - Harga Terjangkau Produk Kerkualitas</title>
         <meta name="description" content="Cari toko bunga di Tangerang? Damai Agung Florist menyediakan bunga segar untuk berbagai acara. Hubungi kami sekarang!">
         <meta name="keywords" content="toko bunga, toko bunga di tangerang, toko bunga di tangerang, bunga tangerang, damai, damai agung, Damai Agung Florist">
@@ -92,7 +92,7 @@
                     },
                     "telephone": ["+6283813735071", "+6282310498541"],
                     "openingHours": ["24/7"],
-                    "image": "https://www.damaiagungflorist.com/logo.jpg",
+                    "image": "https://www.damaiagungflorist.com/imgs/logo.jpg",
                     "priceRange": "IDR 20.000 - IDR 8.500.000",
                     "founder": {
                         "@type": "Person",
@@ -120,9 +120,9 @@
                     ],
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://www.damaiagungflorist.com/logo.jpg",
-                        "width": 302,
-                        "height": 65
+                        "url": "https://www.damaiagungflorist.com/imgs/logo.jpg",
+                        "width": 200,
+                        "height": 200
                     },
                     "contactPoint": {
                         "@type": "ContactPoint",

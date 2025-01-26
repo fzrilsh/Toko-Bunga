@@ -11,21 +11,24 @@ class ConfigurationController extends Controller
     public function index()
     {
         $options = Option::all();
+
         return view('admin.configuration', ['options' => $options]);
     }
 
     public function store(Request $request)
     {
         $params = $request->validate([
-            'options' => 'required|array'
+            'options' => 'required|array',
         ]);
 
-        foreach($params['options'] as $key => $option){
-            if(!isset($option['type'])) $option['type'] = 'sosial media';
+        foreach ($params['options'] as $key => $option) {
+            if (! isset($option['type'])) {
+                $option['type'] = 'sosial media';
+            }
 
             Option::query()->updateOrCreate(['key' => strtolower($key)], [
                 'key' => strtolower($key),
-                ...$option
+                ...$option,
             ]);
 
             unset($params['options'][$key]);

@@ -10,7 +10,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::resource('/', DashboardController::class)->names('dashboard');
@@ -33,8 +32,3 @@ Route::prefix('/admin')->group(function () {
         Route::resource('/profile', AdminProfileController::class)->names('admin.profile');
     });
 });
-Route::group(['middleware' => ['auth:web']], function () {});
-
-Route::get('404', function() {
-    return view('conditions.404');
-})->name('404');

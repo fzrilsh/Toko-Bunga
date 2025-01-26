@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Queue;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\Sitemap\Contracts\Sitemapable;
@@ -32,15 +30,6 @@ class Page extends Model implements Sitemapable
         return 'slug';
     }
 
-    protected static function booted()
-    {
-        static::created(function () {
-            Queue::push(function () {
-                Artisan::call('sitemap:create');
-            });
-        });
-    }
-
     public function toSitemapTag(): Url|string|array
     {
         return Url::create(route('pages', $this))
@@ -63,12 +52,13 @@ class Page extends Model implements Sitemapable
         );
     }
 
-    public function getExcerptAttribute() {
+    public function getExcerptAttribute()
+    {
         $plainText = strip_tags($this->content);
         $plainText = preg_replace('/(\r\n|\r|\n)/', ', ', $plainText);
 
         if (strlen($plainText) > 50) {
-            return substr($plainText, 0, 50) . '...';
+            return substr($plainText, 0, 50).'...';
         }
 
         return $plainText;

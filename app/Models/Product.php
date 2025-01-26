@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Queue;
 use RalphJSmit\Laravel\SEO\Support\HasSEO;
 use RalphJSmit\Laravel\SEO\Support\SEOData;
 use Spatie\Sitemap\Contracts\Sitemapable;
@@ -54,7 +51,7 @@ class Product extends Model implements Sitemapable
         $options = Option::all();
 
         return new SEOData(
-            title: "{$this->name} - ".$options->where('key', 'nama aplikasi')->first()?->value,
+            title: ucwords($this->name).' - '.$options->where('key', 'nama aplikasi')->first()?->value,
             description: $this->description,
             image: asset('storage/'.$this->image),
             published_time: new Carbon($this->created_at),

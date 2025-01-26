@@ -9,16 +9,18 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    protected function rules(){
+    protected function rules()
+    {
         return [
-            'text' => ['required', request()->routeIs('admin.categories.store') ? 'unique:categories,text' : '']
+            'text' => ['required', request()->routeIs('admin.categories.store') ? 'unique:categories,text' : ''],
         ];
     }
 
-    protected function messages(){
+    protected function messages()
+    {
         return [
             'text.required' => 'Nama kategori wajib diisi.',
-            'text.unique' => 'Nama kategori telah dipakai.'
+            'text.unique' => 'Nama kategori telah dipakai.',
         ];
     }
 
@@ -45,6 +47,7 @@ class CategoryController extends Controller
         $params['slug'] = Str::slug($params['text']);
 
         Category::query()->create($params);
+
         return redirect()->route('admin.categories.index');
     }
 
@@ -56,19 +59,23 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $params = $request->validate([
-            'text' => ['required', function($attr, $value, $fail) use($category){
-                if($category->text !== $value && Category::query()->where('text', $value)->first()) $fail('Nama kategori telah dipakai.');
-            }]
+            'text' => ['required', function ($attr, $value, $fail) use ($category) {
+                if ($category->text !== $value && Category::query()->where('text', $value)->first()) {
+                    $fail('Nama kategori telah dipakai.');
+                }
+            }],
         ], $this->messages());
         $params['slug'] = Str::slug($params['text']);
 
         $category->update($params);
+
         return redirect()->route('admin.categories.edit', $category);
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
+
         return back();
     }
 }

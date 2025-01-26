@@ -10,16 +10,18 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
-    protected function rules(){
+    protected function rules()
+    {
         return [
             'title' => ['required', request()->routeIs('admin.pages.store') ? 'unique:pages,title' : ''],
             'content' => 'required|min:10',
             'featured_image' => ['file', 'mimes:png,jpeg,jpg,webp'],
-            'status' => 'required|in:published,draft'
+            'status' => 'required|in:published,draft',
         ];
     }
 
-    protected function messages(){
+    protected function messages()
+    {
         return [
             'title.required' => 'Judul wajib diisi.',
             'title.unique' => 'Judul telah dipakai.',
@@ -59,6 +61,7 @@ class PageController extends Controller
         }
 
         $page = Page::query()->create($params);
+
         return redirect()->route('admin.pages.edit', $page);
     }
 
@@ -81,6 +84,7 @@ class PageController extends Controller
         }
 
         $page->update($params);
+
         return back();
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -16,7 +17,10 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->render(function(NotFoundHttpException $e){
-            return redirect()->route('404');
+        $exceptions->render(function (NotFoundHttpException $e) {
+            return response()->view('conditions.404', [], 404);
         });
+    })
+    ->withSchedule(function (Schedule $schedule) {
+        $schedule->command('sitemap:create')->daily();
     })->create();

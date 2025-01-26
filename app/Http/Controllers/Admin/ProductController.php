@@ -11,7 +11,8 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    protected function rules(){
+    protected function rules()
+    {
         return [
             'name' => ['required', request()->routeIs('admin.products.store') ? 'unique:products,name' : ''],
             'description' => 'required|min:100',
@@ -24,7 +25,8 @@ class ProductController extends Controller
         ];
     }
 
-    protected function messages(){
+    protected function messages()
+    {
         return [
             'name.required' => 'Nama produk wajib diisi.',
             'name.unique' => 'Nama produk telah dipakai.',
@@ -74,7 +76,7 @@ class ProductController extends Controller
             $product->Discount()->create($params);
         }
 
-        foreach($params['types'] ?? [] as $key => $type){
+        foreach ($params['types'] ?? [] as $key => $type) {
             if (isset($type['image'])) {
                 $type['image'] = $request->file("types.$key.image")->storePubliclyAs('products', "{$product->name} - {$type['name']}.png");
             }
@@ -100,7 +102,7 @@ class ProductController extends Controller
             if ($product?->image) {
                 Storage::disk('public')->delete($product?->image);
             }
-            
+
             $params['image'] = $request->file('image')->storePubliclyAs('products', $params['slug'].'.png');
         }
 
@@ -119,10 +121,10 @@ class ProductController extends Controller
                 if ($oldType?->image) {
                     Storage::disk('public')->delete($oldType->image);
                 }
-                
+
                 $type['image'] = $request->file("types.$key.image")->storePubliclyAs('products', "{$product->name} - {$type['name']}.png");
             }
-            
+
             $newProduct = $product->Types()->updateOrCreate(['id' => $typeId], $type);
             $params['types'][$key]['id'] = $newProduct->id;
         }
@@ -146,6 +148,7 @@ class ProductController extends Controller
         });
 
         $product->delete();
+
         return back();
     }
 }

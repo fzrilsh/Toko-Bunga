@@ -27,7 +27,7 @@ class DashboardController extends Controller
     public function with()
     {
         $nama_aplikasi = $this->options->where('key', 'nama aplikasi')->first()?->value;
-        
+
         $products = $this->defaultProducts->take(15);
         $diminati = $this->defaultProducts->sortByDesc('viewers')->take(3);
 
@@ -36,7 +36,7 @@ class DashboardController extends Controller
             'options' => $this->options,
             'diminati' => $diminati,
             'products' => $products,
-            'nama_aplikasi' => $nama_aplikasi
+            'nama_aplikasi' => $nama_aplikasi,
         ];
     }
 
