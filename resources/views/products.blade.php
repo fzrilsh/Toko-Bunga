@@ -23,7 +23,7 @@
 
     @forelse ($products as $category => $items)
         <section class="px-10 mb-10 mx-auto mt-10">
-            <div class="grid max-lg:grid-cols-3 grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5 mx-auto mt-5 items-center">
+            <div class="grid grid-cols-1 gap-5 mx-auto mt-5 items-center">
                 @if ($loop->first)
                     <p class="text-left mb-2 text-bridal-heath-700 font-dancing text-lg">Semua Produk Kami</p>
                 @endif
