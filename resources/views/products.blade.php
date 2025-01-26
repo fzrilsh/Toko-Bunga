@@ -48,22 +48,6 @@
 
                         <a href="{{ route('products.show', $item) }}" class="bg-bridal-heath-700 hover:bg-bridal-heath-900 text-white px-4 py-2 rounded-lg">Lihat Semua</a>
                     </div>
-                    <div class="mx-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center">
-                        <img src="{{ 'storage/' . $item->image }}" class="object-cover object-center rounded-lg w-full h-52 mb-4" alt="Product" />
-                        <div class="flex flex-col items-center">
-                            <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $item->name }}</p>
-                            <span class="mx-auto text-xs opacity-55"><i class="fas fa-eye"></i> {{ $item->viewers }} orang melihat</span>
-                        </div>
-
-                        <div class="my-4 text-center text-sm">
-                            @if ($item['discount']['discounted'])
-                                <p class="text-gray-500 mb-2 text-base"><del>{{ 'Rp ' . number_format($item['price'], 0, ',', '.') }}</del> <span class="uppercase bg-bridal-heath-400 text-white px-2 font-semibold py-1 rounded">Diskon {{ $item['discount']['percent'] }}</span></p>
-                            @endif
-                            <p class="text-gray-700 font-bold">Rp <span class="text-gray-800 text-4xl">{{ number_format($item['discount']['price_after_discount'], 0, ',', '.') }}</span></p>
-                        </div>
-
-                        <a href="{{ route('products.show', $item) }}" class="bg-bridal-heath-700 hover:bg-bridal-heath-900 text-white px-4 py-2 rounded-lg">Lihat Semua</a>
-                    </div>
                 @endforeach
             </div>
         </section>
