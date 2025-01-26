@@ -387,9 +387,7 @@
     @stack('scripts')
 
     <script src="{{ asset('js/flowbite/flowbite.min.js') }}"></script>
-    @if (app()->environment('production'))
-        <script src="{{ asset('build/assets/app2.js') }}"></script>
-    @endif
+    @vite('resources/js/app.js')
 </body>
 
 </html>

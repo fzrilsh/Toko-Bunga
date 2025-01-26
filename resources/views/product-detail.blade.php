@@ -50,12 +50,32 @@
             </div>
 
             @if (count($product->filteredType) > 0)
-                <div class="scroll overflow-x-auto overflow-y-hidden flex gap-5 items-start">
-                    @foreach ($product->filteredType as $type)
-                        <a href="{{ route('products.show', [$product, (isset($type['discount']) ? '' : 'type=' . $type['id'])]) }}" title="Tipe" class="p-3 bg-white rounded-3xl flex flex-col items-center justify-center w-40 h-40 flex-none border border-transparent hover:border-bridal-heath-700 hover:scale-95 transition-all {{ $selectedType?->id === $type['id'] ? 'border-bridal-heath-700' : '' }}">
-                            <img src="{{ asset('storage/' . $type['image']) }}" alt="{{ $type['name'] }}" class="object-contain object-center rounded-lg w-full h-36" />
-                        </a>
-                    @endforeach
+                <div class="relative">
+                    <button onclick="scrollType(-100)" class="absolute left-0 z-10 bg-white hover:bg-gray-300 p-2 rounded-full shadow-md -translate-y-1/2 top-1/2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g>
+                                <path d="M12,2A10,10,0,1,0,22,12,10.011,10.011,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,12,20Z"/>
+                                <polygon points="13.293 7.293 8.586 12 13.293 16.707 14.707 15.293 11.414 12 14.707 8.707 13.293 7.293"/>
+                            </g>
+                        </svg>                          
+                    </button>
+                
+                    <div class="snap-x snap-mandatory scroll overflow-x-auto overflow-y-hidden flex gap-5 items-start" id="scroll-container">
+                        @foreach ($product->filteredType as $type)
+                            <a href="{{ route('products.show', [$product, (isset($type['discount']) ? '' : 'type=' . $type['id'])]) }}" title="Tipe" class="snap-center p-3 rounded-3xl flex flex-col items-center justify-center w-40 h-40 flex-none border border-transparent hover:border-bridal-heath-700 hover:scale-95 transition-all {{ $selectedType?->id === $type['id'] ? 'border-bridal-heath-700' : '' }}">
+                                <img src="{{ asset('storage/' . $type['image']) }}" alt="{{ $type['name'] }}" class="object-cover object-center rounded-lg w-full h-36" />
+                            </a>
+                        @endforeach
+                    </div>
+                
+                    <button onclick="scrollType(100)" class="absolute right-0 z-10 bg-white hover:bg-gray-300 p-2 rounded-full shadow-md -translate-y-1/2 top-1/2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <g>
+                              <path d="M12,2A10,10,0,1,0,22,12,10.011,10.011,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,12,20Z"/>
+                              <polygon points="9.293 8.707 12.586 12 9.293 15.293 10.707 16.707 15.414 12 10.707 7.293 9.293 8.707"/>
+                            </g>
+                        </svg>
+                    </button>
                 </div>
             @endif
         </div>
@@ -94,7 +114,7 @@
 
             <a
                 role="button"
-                href="https://wa.me/6282310498541?text=Halo%20Damai%20Agung%20Florist%2C%0A%0ASaya%20tertarik%20dengan%20produk%20kamu%3A%20%2A{{ $product->name }}%2A.%0AApakah%20produk%20tersebut%20masih%20tersedia%3F%20Kalau%20ada%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20ya%21%0A%0ATerima%20kasih%20sebelumnya.%20%F0%9F%98%8A"
+                href="https://wa.me/{{ $options->where('key', 'whatsapp')->first()?->value }}?text=Halo%20{{ $nama_aplikasi }}%2C%0A%0ASaya%20tertarik%20dengan%20produk%20kamu%3A%20{{ route('products.show', $product) }}.%0A%0AApakah%20produk%20tersebut%20masih%20tersedia%3F%20Kalau%20ada%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20ya%21%0A%0ATerima%20kasih%20sebelumnya.%20%F0%9F%98%8A"
                 class="bg-bridal-heath-500 hover:bg-bridal-heath-600 text-white text-center font-semibold mt-5 py-2 px-6 rounded-lg"
             >
                 Pesan Sekarang
@@ -140,5 +160,16 @@
             let total = (q * price).toLocaleString('id-ID', { minimumFractionDigits: 0 })
             totalEl.innerHTML = `Rp. ${total}`
         }, 100);
+    </script>
+
+    <script>
+        const scrollContainer = document.getElementById('scroll-container');
+
+        function scrollType(value) {
+            scrollContainer.scrollBy({
+                left: value,
+                behavior: 'smooth'
+            });
+        }
     </script>
 @endpush
