@@ -13,14 +13,14 @@
         <meta name="keywords" content="toko bunga, toko bunga di tangerang, toko bunga di tangerang, bunga tangerang, damai, damai agung, Damai Agung Florist">
         <link rel="sitemap" title="Sitemap" href="{{ asset('sitemap.xml') }}" type="application/xml">
         <link rel="canonical" href="https://www.damaiagungflorist.com/">
-        <meta property="og:locale" content="en_US">
+        <meta property="og:locale" content="id_ID">
         <meta property="og:type" content="website">
         <meta property="og:title" content="Toko Bunga di Tangerang - Harga Terjangkau Produk Kerkualitas">
         <meta property="og:description" content="Cari toko bunga di Tangerang? Damai Agung Florist menyediakan bunga segar untuk berbagai acara. Hubungi kami sekarang!">
         <meta property="og:url" content="https://www.damaiagungflorist.com/">
         <meta property="og:site_name" content="Toko Bunga di Tangerang - Harga Terjangkau Produk Kerkualitas">
         <meta property="article:modified_time" content="2024-01-10T15:28:37+00:00">
-        <meta property="og:image" content="{{ asset('imgs/logo.jpg') }}">
+        <meta property="og:image" content="{{ asset('imgs/medsos-image.jpeg') }}">
         <meta property="og:image:width" content="200">
         <meta property="og:image:height" content="200">
         <meta property="og:image:type" content="image/jpeg">
@@ -39,7 +39,7 @@
         <link rel="shortcut icon" href="{{ asset('imgs/logo.jpg') }}" type="image/x-icon">
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('imgs/logo.jpg') }}">
         <link rel="icon" sizes="192x192" href="{{ asset('imgs/logo.jpg') }}">
-        <meta name="msapplication-TileImage" content="{{ asset('imgs/logo.jpg') }}">
+        <meta name="msapplication-TileImage" content="{{ asset('imgs/medsos-image.jpeg') }}">
 
         <meta property="og:locale" content="en_US">
         <meta property="og:type" content="website">
@@ -54,7 +54,7 @@
     100% Bunga Segar - 100% Pengiriman Cepat       
     Produk Terbaru          Buket Bunga">
         <meta property="og:url" content="https://www.damaiagungflorist.com/">
-        <meta property="og:image" content="{{ asset('imgs/logo.jpg') }}">
+        <meta property="og:image" content="{{ asset('imgs/medsos-image.jpeg') }}">
         <meta property="og:image:width" content="200">
         <meta property="og:image:height" content="200">
         <meta property="og:image:type" content="image/jpeg">
