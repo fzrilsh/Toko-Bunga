@@ -41,18 +41,6 @@ class Product extends Model implements Sitemapable
         return 'slug';
     }
 
-    protected static function booted()
-    {
-        static::created(function () {
-            Artisan::call('sitemap:create');
-        });
-
-        static::saved(function (){
-            Artisan::call('sitemap:create');
-        });
-
-    }
-
     public function toSitemapTag(): Url|string|array
     {
         return Url::create(route('products.show', $this))
