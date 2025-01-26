@@ -27,7 +27,7 @@
             <div class="scroll overflow-x-auto overflow-y-hidden gap-5 flex justify-around mx-auto mt-5 items-end max-w-4xl max-sm:w-full max-sm:max-w-none">
                 @foreach ($diminati as $item)
                     <div class="p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 max-sm:w-full flex-none">
-                        <img src="{{ 'storage/' . $item->image }}" class="object-cover object-center rounded-lg w-full h-52 mb-4" alt="Product" />
+                        <img src="{{ 'storage/' . $item->image }}" class="object-contain object-center rounded-lg w-full h-52 mb-4" alt="Product" />
                         <div class="flex flex-col items-center">
                             <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $item->name }}</p>
                             <span class="mx-auto text-xs opacity-55"><i class="fas fa-eye"></i> {{ $item->viewers }} orang melihat</span>
@@ -152,7 +152,7 @@
         <div class="scroll overflow-x-auto overflow-y-hidden flex gap-5 mx-auto mt-5 items-center">
             @foreach ($products as $product)
                 <div class="mx-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 flex-none">
-                    <img src="{{ asset('storage/' . $product->image) }}" class="object-cover object-center rounded-lg w-full h-52 mb-4" alt="Product" />
+                    <img src="{{ asset('storage/' . $product->image) }}" class="object-contain object-center rounded-lg w-full h-52 mb-4" alt="Product" />
                     <div class="flex flex-col items-center">
                         <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $product->name }}</p>
                         <span class="mx-auto text-xs opacity-55"><i class="fas fa-eye"></i> {{ $product->viewers }} orang melihat</span>

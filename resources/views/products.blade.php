@@ -32,10 +32,10 @@
 
             <div class="grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-5 mx-auto mt-5 items-end">
                 @foreach ($items as $item)
-                    <div class="mx-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center">
-                        <img src="{{ 'storage/' . $item->image }}" class="object-cover object-center rounded-lg w-full h-52 mb-4" alt="Product" />
+                    <div class="mx-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center max-sm:w-full w-72 border shadow-lg shadow-bridal-heath py-4">
+                        <img src="{{ 'storage/' . $item->image }}" class="object-contain object-center rounded-lg w-full h-52 mb-4" alt="Product" />
                         <div class="flex flex-col items-center">
-                            <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $item->name }}</p>
+                            <p class="mx-auto text-center mb-2 text-xl font-bold break-words">{{ $item->name }}</p>
                             <span class="mx-auto text-xs opacity-55"><i class="fas fa-eye"></i> {{ $item->viewers }} orang melihat</span>
                         </div>
 

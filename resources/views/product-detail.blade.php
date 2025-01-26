@@ -20,15 +20,15 @@
 @endpush
 
 @section('content')
-    <section class="mx-auto px-10 py-8 grid grid-cols-3 max-sm:grid-cols-1 gap-5 items-start">
-        <div class="w-full col-span-2 max-sm:col-span-1">
-            <div class="flex items-start gap-5 mb-10 max-sm:flex-col">
+    <section class="mx-auto px-10 py-8 grid grid-cols-3 max-md:grid-cols-1 gap-5 items-start">
+        <div class="w-full col-span-2 max-md:col-span-1">
+            <div class="flex items-start gap-5 mb-10 max-md:flex-col">
                 <div class="w-full h-96 mt-8">
-                    <img src="{{ asset('storage/' . ($selectedType ? $selectedType->image : $product->image)) }}" alt="{{ $product->name }}" class="image-display flex-none w-96 h-96 object-cover object-center rounded-lg" />
+                    <img src="{{ asset('storage/' . ($selectedType ? $selectedType->image : $product->image)) }}" alt="{{ $product->name }}" class="image-display flex-none w-96 h-96 object-contain object-center rounded-lg" />
                 </div>
 
-                <div class="max-sm:w-full">
-                    <h1 class="text-3xl font-bold text-gray-700">{{ $product->name }}</h1>
+                <div class="max-sm:w-full h-auto">
+                    <h1 class="text-3xl font-bold text-gray-700 max-w-96 break-words">{{ $product->name }}</h1>
 
                     <span class="text-xs opacity-55 mb-4"><i class="fas fa-eye"></i> {{ $product->viewers }} orang melihat</span>
 
@@ -43,15 +43,17 @@
                         <p class="text-gray-700 font-bold mb-5">Rp <span class="text-gray-800 text-4xl">{{ number_format($product['price'], 0, ',', '.') }}</span></p>
                     @endif
 
-                    <p class="text-gray-700 mb-6 max-sm:w-full min-w-[30rem] max-w-[50rem]" style="white-space: pre-line">{{ $product->description }}</p>
+                    <p class="text-gray-700 mb-6 max-sm:w-full min-w-32 max-w-96 break-words">
+                        {{ $product->description }}
+                    </p>
                 </div>
             </div>
 
             @if (count($product->filteredType) > 0)
                 <div class="scroll overflow-x-auto overflow-y-hidden flex gap-5 items-start">
                     @foreach ($product->filteredType as $type)
-                        <a href="{{ route('products.show', [$product, (isset($type['discount']) ? '' : 'type=' . $type['id'])]) }}" class="p-3 bg-white rounded-lg flex flex-col items-center justify-center w-40 h-40 flex-none border border-transparent hover:border-bridal-heath-700 hover:scale-95 transition-all {{ $selectedType?->id === $type['id'] ? 'border-bridal-heath-700' : '' }}">
-                            <img src="{{ asset('storage/' . $type['image']) }}" alt="{{ $type['name'] }}" class="object-cover object-center rounded-lg w-full h-36" />
+                        <a href="{{ route('products.show', [$product, (isset($type['discount']) ? '' : 'type=' . $type['id'])]) }}" title="Tipe" class="p-3 bg-white rounded-3xl flex flex-col items-center justify-center w-40 h-40 flex-none border border-transparent hover:border-bridal-heath-700 hover:scale-95 transition-all {{ $selectedType?->id === $type['id'] ? 'border-bridal-heath-700' : '' }}">
+                            <img src="{{ asset('storage/' . $type['image']) }}" alt="{{ $type['name'] }}" class="object-contain object-center rounded-lg w-full h-36" />
                         </a>
                     @endforeach
                 </div>
@@ -106,10 +108,10 @@
 
         <div class="scroll overflow-x-auto overflow-y-hidden flex gap-5 mx-auto mt-5 items-start">
             @foreach ($products as $item)
-                <div class="mr-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 flex-none">
-                    <img src="{{ asset('storage/' . $item->image) }}" class="object-cover object-center rounded-lg w-full h-52 mb-4" alt="Product" />
+                <div class="mr-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 flex-none py-4">
+                    <img src="{{ asset('storage/' . $item->image) }}" class="object-contain object-center rounded-lg w-full h-52 mb-4" alt="Product" />
                     <div class="flex flex-col items-center">
-                        <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $item->name }}</p>
+                        <p class="max-w-56 mx-auto text-center mb-2 text-xl font-bold break-words">{{ $item->name }}</p>
                         <span class="mx-auto text-xs opacity-55"><i class="fas fa-eye"></i> {{ $item->viewers }} orang melihat</span>
                     </div>
 
