@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Option;
 use App\Models\Product;
 use App\Models\ProductType;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -35,7 +36,11 @@ class ProductController extends Controller
         if ($search) {
             $products = $this->defaultProducts
                 ->toQuery()
-                ->where('keyword', 'LIKE', "%{$search}%")
+                ->where(function(Builder $query) use($search){
+                    $query->orWhere('keyword', 'LIKE', "%{$search}%")
+                        ->orWhere('name', 'LIKE', "%{$search}%")
+                        ->orWhere('description', 'LIKE', "%{$search}%");
+                })
                 ->get()
                 ->groupBy('category');
         }
@@ -54,14 +59,14 @@ class ProductController extends Controller
         $type = ProductType::query()->find(request()->input('type'));
         $products = $this->defaultProducts
             ->toQuery()
-            ->where('slug', '!=', $product->slug)
+            ->whereNot('slug', $product->slug)
             ->orderBy(DB::raw('RAND()'))
             ->get()
             ->take(10);
 
-        $product->update([
-            'viewers' => $product->viewers++,
-        ]);
+        // $product->update([
+        //     'viewers' => $product->viewers++,
+        // ]);
 
         $product->filteredType = $product->types;
         if ($type) {

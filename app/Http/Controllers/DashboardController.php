@@ -26,19 +26,16 @@ class DashboardController extends Controller
 
     public function with()
     {
-        $byCategory = $this->defaultProducts->groupBy('category');
-        $diminati = $this->defaultProducts->take(5);
-        if($diminati->count()){
-            $diminati = $this->defaultProducts->toQuery()->orderByDesc('viewers')->get()->take(5);
-        }
-
         $nama_aplikasi = $this->options->where('key', 'nama aplikasi')->first()?->value;
+        
+        $products = $this->defaultProducts->take(15);
+        $diminati = $this->defaultProducts->toQuery()->orderByDesc('viewers')->get()->take(3);
 
         return [
             'pageTitle' => 'Toko Bunga Tangerang, Harga Mulai Dari Rp. 19.000 - Toko Bunga Terdekat',
             'options' => $this->options,
             'diminati' => $diminati,
-            'byCategory' => $byCategory,
+            'products' => $products,
             'nama_aplikasi' => $nama_aplikasi
         ];
     }

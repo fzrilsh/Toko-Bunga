@@ -116,9 +116,6 @@
                             <input type="text" name="types[{{ $key }}][name]"
                                 value="{{ old('types.' . $key . '.name', $item['name']) }}" placeholder="Type Name"
                                 class="w-1/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                            <input type="number" name="types[{{ $key }}][price]"
-                                value="{{ old('types.' . $key . '.price', $item['price']) }}" placeholder="Price"
-                                class="w-1/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                             @if ($item['image'])
                                 <img src="{{ asset('storage/' . $item['image']) }}"
                                     class="object-contain w-16 h-16 rounded">
@@ -156,7 +153,6 @@
             typeRow.className = "flex items-center space-x-4 mb-4";
             typeRow.innerHTML = `
                 <input type="text" name="types[${groups}][name]" placeholder="Type Name" class="w-1/3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                <input type="number" name="types[${groups}][price]" placeholder="Price" class="w-1/3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 <input type="file" name="types[${groups}][image]" accept=".png,.jpeg,.jpg,.webp" class="w-1/3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:underline">Remove</button>
             `;
