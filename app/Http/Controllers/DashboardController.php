@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $nama_aplikasi = $this->options->where('key', 'nama aplikasi')->first()?->value;
         
         $products = $this->defaultProducts->take(15);
-        $diminati = $this->defaultProducts->orderByDesc('viewers')->get()->take(3);
+        $diminati = $this->defaultProducts->sortByDesc('viewers')->take(3);
 
         return [
             'pageTitle' => 'Toko Bunga Tangerang, Harga Mulai Dari Rp. 19.000 - Toko Bunga Terdekat',
