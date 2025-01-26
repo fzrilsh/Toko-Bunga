@@ -64,9 +64,9 @@ class ProductController extends Controller
             ->get()
             ->take(10);
 
-        // $product->update([
-        //     'viewers' => $product->viewers++,
-        // ]);
+        $product->update([
+            'viewers' => $product->viewers++,
+        ]);
 
         $product->filteredType = $product->types;
         if ($type) {
