@@ -24,7 +24,12 @@ class PageController extends Controller
             return Page::query()->where('status', 'published')->get()->sortBy([['created_at', 'desc']]);
         });
 
-        return view('pages', ['pageTitle' => 'Pages', 'pages' => $pages]);
+        return view('pages', [
+            'pageTitle' => 'Pages',
+            'pages' => $pages,
+            'nama_aplikasi' => $this->options->toQuery()->key('nama aplikasi')->value,
+            'options' => $this->options
+        ]);
     }
 
     public function show(Page $page){

@@ -18,9 +18,9 @@
     <div class="col-span-2 max-sm:col-span-1" id="editor-container">
         {!! $page->content !!}
     </div>
-    <div class="col-span-1 max-sm:col-span-1 bg-bridal-heath-150 p-5 rounded-xl w-full sticky top-20 max-h-56">
+    <div class="col-span-1 max-sm:col-span-1 bg-bridal-heath-150 p-5 rounded-xl w-full sticky top-28 h-fit">
         <h1 class="font-titillium font-bold text-2xl mb-4 text-gray-700">Iklan</h1>
-        <img src="https://via.placeholder.com/300x200?text=Space Available" alt="Advertisement" class="w-full mb-4 rounded" />
+        <img src="https://placehold.co/300x200/F3E8DC/black?text=Space%20Available" alt="Advertisement" class="w-full mb-4 rounded" />
         <p class="text-gray-600 text-sm">Tersedia space untuk iklan kerjasama disini.</p>
     </div>
 </section>

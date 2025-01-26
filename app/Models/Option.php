@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Option extends Model
@@ -17,5 +18,9 @@ class Option extends Model
     public function getRouteKeyName()
     {
         return 'key';
+    }
+
+    public function scopeKey(Builder $query, string $key){
+        return $query->where('key', $key)->first();
     }
 }
