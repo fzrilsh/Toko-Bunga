@@ -53,7 +53,7 @@
         </section>
     @empty
         <section class="flex flex-col items-center mb-10 p-5 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="500" viewBox="0 0 1920 1080" enable-background="new 0 0 1920 1080" id="ConceptofUnknownthings">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 1920 1080" enable-background="new 0 0 1920 1080" id="ConceptofUnknownthings" class="w-96">
                 <g id="Background" fill="#000000" class="color000000 svgShape">
                   <ellipse cx="906.5" cy="1046.6" rx="337.2" ry="33.4" opacity="8.000000e-02" fill="#dba865" class="colorffbe55 svgShape"></ellipse>
                   <path d="M671 1021.7c-1.7-1.6-249.3-347.5-43.9-456 279.5-147.8-92.7-647 423.3-554.3 496.8 89.2-102.4 483.3 101.1 627.3 133.5 94.4 211 321.2-68.2 394-177.1 46-369.2 29.3-412.3-11z" opacity="8.000000e-02" fill="#dba865" class="colorffbe55 svgShape"></path>

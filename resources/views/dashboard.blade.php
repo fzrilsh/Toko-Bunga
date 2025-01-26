@@ -28,8 +28,9 @@
                 @foreach ($diminati as $item)
                     <div class="p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 max-sm:w-full flex-none">
                         <img src="{{ 'storage/' . $item->image }}" class="object-cover object-center rounded-lg w-full h-52 mb-4" alt="Product" />
-                        <div>
+                        <div class="flex flex-col items-center">
                             <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $item->name }}</p>
+                            <span class="mx-auto text-xs opacity-55"><i class="fas fa-eye"></i> {{ $item->viewers }} orang melihat</span>
                         </div>
 
                         <div class="my-4 text-center text-sm">
@@ -142,7 +143,7 @@
         </div>
     </section>
 
-    <section class="px-10 pb-10 container mx-auto mt-10" id="produk">
+    <section class="px-10 pb-10 container mx-auto mt-10">
         <div class="flex flex-col items-center">
             <p class="text-left mb-2 text-bridal-heath-700 font-dancing text-lg">Semua Produk Kami</p>
             <h1 class="text-left text-3xl font-bold text-gray-700 font-titillium">Lihatlah yang kami miliki <a href="{{ route('products.index') }}" class="text-sm text-bridal-heath-700 hover:underline cursor-pointer">(lihat semua)</a></h1>
@@ -152,8 +153,9 @@
             @foreach ($products as $product)
                 <div class="mx-auto p-3 bg-white rounded-lg flex flex-col items-center justify-center w-64 flex-none">
                     <img src="{{ asset('storage/' . $product->image) }}" class="object-cover object-center rounded-lg w-full h-52 mb-4" alt="Product" />
-                    <div>
+                    <div class="flex flex-col items-center">
                         <p class="mx-auto text-center mb-2 text-xl font-bold">{{ $product->name }}</p>
+                        <span class="mx-auto text-xs opacity-55"><i class="fas fa-eye"></i> {{ $product->viewers }} orang melihat</span>
                     </div>
 
                     <div class="my-4 text-center text-sm">

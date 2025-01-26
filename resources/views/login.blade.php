@@ -7,11 +7,7 @@
     <title>Masuk</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    @if (env('APP_ENV') === 'production')
-        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
-    @else
-        @vite('resources/css/app.css')
-    @endif
+    @vite('resources/css/app.css')
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
