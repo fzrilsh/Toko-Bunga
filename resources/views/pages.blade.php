@@ -1,10 +1,12 @@
 @extends('components.layouts.app')
 
 @section('content')
-    <div class="container mx-auto mt-6 px-4 py-4 lg:flex">
+    <div class="container mx-auto mt-20 px-4 py-4 lg:flex">
         <div class="flex-1">
 
-            <h1 class="text-3xl font-bold text-gray-800 mb-6">Konten Terbaru Kami</h1>
+            <h1 class="text-4xl sm:text-5xl font-bold text-bridal-heath-600 font-titillium mb-4 leading-tight">
+                Konten Terbaru Untukmu
+            </h1>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($pages as $page)
