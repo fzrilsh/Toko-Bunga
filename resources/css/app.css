@@ -1,6 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+/* Force rebuild - layout update */
+
+/* Tailwind v4 Theme Configuration */
+@theme {
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  
+  /* Bridal Heath Custom Color Palette */
+  --color-bridal-heath-50: #fff8f2;
+  --color-bridal-heath-150: #f3e8dc;
+  --color-bridal-heath-200: #e8d5c0;
+  --color-bridal-heath-300: #d9b898;
+  --color-bridal-heath-400: #c9966e;
+  --color-bridal-heath-500: #be7d51;
+  --color-bridal-heath-600: #b06946;
+  --color-bridal-heath-700: #93543b;
+  --color-bridal-heath-800: #774535;
+  --color-bridal-heath-900: #603a2e;
+}
 
 #editor-container {
 @apply text-gray-800 leading-relaxed;
