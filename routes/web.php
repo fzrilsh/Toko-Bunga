@@ -11,42 +11,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Response;
 
 Route::resource('/', DashboardController::class)->names('dashboard');
 Route::resource('/products', ProductController::class)->names('products');
 Route::resource('/pages', PageController::class)->names('pages');
-
-// Storage endpoint - untuk serve files dari storage/app/public
-Route::get('/storage/{path}', function ($path) {
-    // Decode path untuk handle special characters
-    $path = urldecode($path);
-    
-    // Check if file exists
-    if (!Storage::disk('public')->exists($path)) {
-        abort(404, 'File not found');
-    }
-    
-    // Get file path
-    $filePath = Storage::disk('public')->path($path);
-    
-    // Get file info
-    $mimeType = Storage::disk('public')->mimeType($path) ?? mime_content_type($filePath);
-    $fileSize = Storage::disk('public')->size($path);
-    $lastModified = Storage::disk('public')->lastModified($path);
-    
-    // Create response with proper headers
-    $response = Response::file($filePath, [
-        'Content-Type' => $mimeType,
-        'Content-Length' => $fileSize,
-        'Cache-Control' => 'public, max-age=31536000, immutable',
-        'Last-Modified' => gmdate('D, d M Y H:i:s', $lastModified) . ' GMT',
-        'Expires' => gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT',
-    ]);
-    
-    return $response;
-})->where('path', '.*')->name('storage.serve');
 
 Route::prefix('/admin')->group(function () {
     Route::get('/logout', [AuthController::class, 'Logout'])->name('logout');
