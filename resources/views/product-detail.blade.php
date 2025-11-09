@@ -384,6 +384,7 @@
         const appName = @json($nama_aplikasi);
         const basePrice = {{ $product['price'] }};
         const discountPercent = {{ (int)$product['discount']['percent'] ?? 0 }};
+        const selectedType = @json($selectedType ? $selectedType->name : null);
         
         // Elements
         const quantityInput = document.querySelector('#quantity-input');
@@ -431,10 +432,16 @@
 
         // Update WhatsApp link with quantity and subtotal
         function updateWhatsAppLink(quantity, subtotal) {
-            const message = `Halo ${appName},%0A%0ASaya tertarik dengan produk kamu:%0A%0A` +
-                `*Produk:* ${productName}%0A` +
-                `*Link:* ${productUrl}%0A` +
-                `*Quantity:* ${quantity}%0A` +
+            let message = `Halo ${appName},%0A%0ASaya tertarik dengan produk kamu:%0A%0A` +
+                `*Produk:* ${productName}%0A`;
+            
+            // Add selected type/variant if exists
+            if (selectedType) {
+                message += `*Varian:* ${selectedType}%0A`;
+            }
+            
+            message += `*Link:* ${productUrl}%0A` +
+                `*Quantity:* ${quantity} buah%0A` +
                 `*Subtotal:* Rp ${formatRupiah(subtotal)}%0A%0A` +
                 `Apakah produk tersebut masih tersedia? Kalau ada, saya ingin tahu lebih lanjut ya!%0A%0A` +
                 `Terima kasih.`;
