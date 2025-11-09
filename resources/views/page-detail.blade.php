@@ -1,7 +1,7 @@
 @extends('components.layouts.app')
 
 @section('content')
-<section class="grid grid-cols-3 max-sm:grid-cols-1 p-10 gap-5 max-sm:items-center">
+<section class="grid grid-cols-3 max-sm:grid-cols-1 mt-20 p-10 gap-5 max-sm:items-center">
     <div class="col-span-3 max-sm:col-span-1">
         <h1 class="font-titillium font-bold text-4xl mb-2 text-gray-700">{{ $page->title }}</h1>
         <p class="text-gray-600 mb-5">Ditulis oleh <span class="text-bridal-heath-700 font-bold">Admin</span> pada {{ \Carbon\Carbon::parse($page->created_at)->format('d F Y') }}</p>
