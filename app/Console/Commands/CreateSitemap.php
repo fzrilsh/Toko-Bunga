@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Page;
+use App\Models\Product;
 use Illuminate\Console\Command;
-use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
 class CreateSitemap extends Command
@@ -27,23 +29,49 @@ class CreateSitemap extends Command
      */
     public function handle()
     {
-        $generator = SitemapGenerator::create(config('app.url'))
-            ->hasCrawled(function (Url $url) {
-                if ($url->path() === '/') {
-                    $url->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY);
-                } elseif (str_starts_with($url->path(), '/products')) {
-                    $url->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY);
-                } else {
-                    $url->setPriority(0.5)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY);
-                }
+        $sitemap = Sitemap::create();
 
-                if (str_contains($url->path(), 'admin')) {
-                    return null;
-                }
+        // Homepage
+        $sitemap->add(
+            Url::create(route('dashboard.index'))
+                ->setLastModificationDate(now())
+                ->setPriority(1.0)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+        );
 
-                return $url;
-            });
+        // Products Index Page
+        $sitemap->add(
+            Url::create(route('products.index'))
+                ->setLastModificationDate(now())
+                ->setPriority(0.9)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+        );
 
-        $generator->writeToFile(public_path('sitemap.xml'));
+        // All Products
+        Product::all()->each(function (Product $product) use ($sitemap) {
+            $sitemap->add(
+                Url::create(route('products.show', $product))
+                    ->setLastModificationDate($product->updated_at)
+                    ->setPriority(0.8)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+            );
+        });
+
+        // All Pages (About, Privacy, etc.)
+        Page::all()->each(function (Page $page) use ($sitemap) {
+            $sitemap->add(
+                Url::create(route('pages.show', $page))
+                    ->setLastModificationDate($page->updated_at)
+                    ->setPriority(0.6)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+            );
+        });
+
+        // Write to file
+        $sitemap->writeToFile(public_path('sitemap.xml'));
+        
+        $this->info('Sitemap generated successfully!');
+        $this->info('Location: ' . public_path('sitemap.xml'));
+        $this->info('Total URLs: ' . (1 + 1 + Product::count() + Page::count()));
     }
 }
